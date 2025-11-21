@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PFC Follow-Up Pathway Ticketing System - MVP Workflow</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .intro {
+            padding: 40px;
+            background: #f7fafc;
+            border-bottom: 3px solid #e2e8f0;
+        }
+
+        .intro h2 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .intro p {
+            color: #4a5568;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .workflow-section {
+            padding: 40px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .workflow-section:last-child {
+            border-bottom: none;
+        }
+
+        .workflow-section h2 {
+            color: #2d3748;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .workflow-section h3 {
+            color: #4a5568;
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        .workflow-section p {
+            color: #718096;
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+
+        .diagram-container {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+
+        .key-features {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .key-features h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .key-features ul {
+            list-style-position: inside;
+            color: #4a5568;
+        }
+
+        .key-features li {
+            margin: 8px 0;
+            padding-left: 10px;
+        }
+
+        .highlight-box {
+            background: #fff4e1;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .highlight-box h4 {
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box p {
+            color: #78350f;
+            margin: 0;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 5px 0;
+            opacity: 0.9;
+        }
+
+        .print-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        .print-button:hover {
+            background: #5568d3;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+            .print-button {
+                display: none;
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .badge-new {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PFC Job Request Tracking System</h1>
+            <p>Powered by Follow-Up Pathway</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">MVP Implementation - Crawl, Walk, Run Approach</p>
+        </header>
+
+        <div class="intro">
+            <h2>🎯 System Overview</h2>
+            <p>This document outlines the MVP (Minimum Viable Product) workflow for PFC's job request tracking system, built entirely within the <strong>Follow-Up Pathway</strong> platform. The system solves the critical problem of "fire drills" by ensuring HR, Finance, and Admin teams are notified immediately—not 2 days before the go date.</p>
+
+            <div class="highlight-box">
+                <h4>🚀 The "Crawl, Walk, Run" Approach</h4>
+                <p><strong>Week 1-2:</strong> Build MVP with one use case (e.g., weekend detail request)<br>
+                <strong>Week 3-4:</strong> Test, gather feedback, iterate<br>
+                <strong>Month 2+:</strong> Expand to additional use cases and departments</p>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <span class="badge">Multi-Channel Intake</span>
+                <span class="badge-new">Sage AI Phone Integration</span>
+                <span class="badge">AI-Powered Routing</span>
+                <span class="badge">Automated Escalations</span>
+                <span class="badge">Executive Dashboard</span>
+                <span class="badge-new">ESOC Integration</span>
+            </div>
+
+            <button class="print-button" onclick="window.print()">📄 Print/Save as PDF</button>
+        </div>
+
+        <!-- NEW: USER-FRIENDLY INTAKE -->
+        <div class="workflow-section">
+            <h2>1. User-Friendly Multi-Channel Intake</h2>
+            <p>Different team members have different communication styles. The system meets everyone where they are—no forcing people to change their habits.</p>
+
+            <div class="key-features">
+                <h4>Intake Methods by User Preference:</h4>
+                <ul>
+                    <li><strong>Steve:</strong> Forwards emails to tickets@pfcgoc.com → Auto-creates ticket</li>
+                    <li><strong>DK:</strong> Texts request to PFC number → Auto-creates ticket</li>
+                    <li><strong>Sage AI:</strong> Call 1-800-PFC-SAGE, describe request → Auto-creates ticket</li>
+                    <li><strong>Anyone:</strong> Visit request.pfcgoc.com → Fill simple form → Auto-creates ticket</li>
+                    <li><strong>Front Desk:</strong> Internal dashboard → Create ticket while on call with client</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h4>✅ Design Principle: Path of Least Resistance</h4>
+                <p>All roads lead to the same database. No matter how the request comes in, it automatically creates a ticket in Follow-Up Pathway with all the right people notified. <strong>No 20 fill-in-the-blank boxes.</strong> Just the essentials.</p>
+            </div>
+
+            <div class="diagram-container">
+                <div class="mermaid">
+flowchart TD
+    Start([Request Comes In]) --> Methods{How?}
+
+    Methods -->|Steve forwards email| Email[Email to tickets@pfcgoc.com]
+    Methods -->|DK sends text| Text[Text to PFC Number]
+    Methods -->|Manager calls| Sage[Sage AI Answers Call]
+    Methods -->|Website submission| Web[Client/Staff Visits Portal]
+    Methods -->|Front desk intake| Dash[Staff Opens Dashboard]
+
+    Email --> Parse[Auto-Parse Key Details]
+    Text --> Parse
+    Sage --> Parse
+    Web --> Parse
+    Dash --> Manual[Rep Fills Quick Form]
+
+    Parse --> Create[Create Opportunity in FUP]
+    Manual --> Create
+
+    Create --> Fields[Populate Fields:<br/>Client, Job Type, Date, Location]
+    Fields --> Webhook[Trigger Webhook to Replit]
+
+    Webhook --> AI[Claude AI Analyzes Request]
+    AI --> Route[Determines Departments:<br/>Staffing, Logistics, Finance, Scheduling, ESOC?]
+
+    Route --> Tasks[Auto-Create Tasks in FUP]
+    Tasks --> Notify[Send Notifications to Teams]
+
+    Notify --> Done([All Teams Notified<br/>Clock Starts Ticking])
+
+    style Start fill:#e1f5ff
+    style Create fill:#fff4e1
+    style AI fill:#e7f5e1
+    style Done fill:#e1ffe7
+                </div>
+            </div>
+        </div>
+
+        <!-- UPDATED: 5 DEPARTMENTS INCLUDING ESOC -->
+        <div class="workflow-section">
+            <h2>2. AI-Powered Smart Routing</h2>
+            <p>Once a ticket is created, AI analyzes the request and determines which departments need to be involved. Not every request needs all departments—the system is smart about routing.</p>
+
+            <div class="key-features">
+                <h4>Five Departments in PFC Workflow:</h4>
+                <ul>
+                    <li><strong>Staffing:</strong> Identify and assign personnel (always needed for operational requests)</li>
+                    <li><strong>Logistics:</strong> Transportation, equipment, setup (job-dependent)</li>
+                    <li><strong>Finance:</strong> Job codes, billing, hourly rates (always needed)</li>
+                    <li><strong>Scheduling:</strong> Calendar coordination, shift assignments (always needed)</li>
+                    <li><strong>ESOC:</strong> Security assessments, geofencing, vulnerability analysis (when required)</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h4>💡 Example: Weekend Detail in Miami</h4>
+                <p><strong>AI Analysis:</strong> "Client needs 3 security personnel for Saturday event in Miami Beach, 6pm-2am"<br>
+                <strong>Auto-Routing:</strong> ✅ Staffing (3 personnel) | ✅ Logistics (Miami location) | ✅ Finance (quote needed) | ✅ Scheduling (weekend shift) | ❌ ESOC (not required)</p>
+            </div>
+
+            <div class="diagram-container">
+                <div class="mermaid">
+flowchart TD
+    Start[New Ticket in FUP] --> Webhook[Webhook to Replit Middleware]
+
+    Webhook --> Extract[Extract Ticket Data:<br/>Client, Description, Date, Location]
+
+    Extract --> Claude[Send to Claude API]
+
+    Claude --> Analyze{AI Determines<br/>Departments}
+
+    Analyze --> Check1{Staffing?}
+    Analyze --> Check2{Logistics?}
+    Analyze --> Check3{Finance?}
+    Analyze --> Check4{Scheduling?}
+    Analyze --> Check5{ESOC?}
+
+    Check1 -->|Yes| Staff[Create Staffing Task<br/>Assign to Sarah]
+    Check1 -->|No| Skip1[Skip]
+
+    Check2 -->|Yes| Log[Create Logistics Task<br/>Assign to Mike]
+    Check2 -->|No| Skip2[Skip]
+
+    Check3 -->|Yes| Fin[Create Finance Task<br/>Assign to Lisa]
+    Check3 -->|No| Skip3[Skip]
+
+    Check4 -->|Yes| Sched[Create Scheduling Task<br/>Assign to John]
+    Check4 -->|No| Skip4[Skip]
+
+    Check5 -->|Yes| ESOC[Create ESOC Task<br/>Assign to Adolph]
+    Check5 -->|No| Skip5[Skip]
+
+    Staff --> Response[Send Back to FUP]
+    Log --> Response
+    Fin --> Response
+    Sched --> Response
+    ESOC --> Response
+    Skip1 --> Response
+    Skip2 --> Response
+    Skip3 --> Response
+    Skip4 --> Response
+    Skip5 --> Response
+
+    Response --> UpdateTicket[Update Opportunity<br/>with AI Notes]
+
+    UpdateTicket --> SendNotif[Trigger FUP Workflows<br/>Notify Teams]
+
+    SendNotif --> Done([Tasks Created<br/>Teams Notified])
+
+    style Start fill:#e1f5ff
+    style Claude fill:#fff4e1
+    style Response fill:#e7f5e1
+    style Done fill:#e1ffe7
+                </div>
+            </div>
+        </div>
+
+        <!-- TIME-BASED ESCALATIONS -->
+        <div class="workflow-section">
+            <h2>3. Time-Based Escalation System</h2>
+            <p>No more tasks falling through the cracks. If someone doesn't respond, the system automatically escalates up the chain.</p>
+
+            <div class="key-features">
+                <h4>Four-Level Escalation Path:</h4>
+                <ul>
+                    <li><strong>Level 1 (2 hours):</strong> Reminder to assigned person (email + SMS)</li>
+                    <li><strong>Level 2 (4 hours):</strong> Team lead notification (email + SMS + call)</li>
+                    <li><strong>Level 3 (8 hours):</strong> Department manager alert (email + SMS + call)</li>
+                    <li><strong>Level 4 (24 hours):</strong> Executive team notification (Chris, Marco, Steve)</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h4>⚖️ Balanced Notifications</h4>
+                <p>The system is selective about notifications—avoiding alert fatigue. Only critical escalations trigger multiple channels. Day-to-day updates use in-app notifications and @mentions.</p>
+            </div>
+
+            <div class="diagram-container">
+                <div class="mermaid">
+flowchart TD
+    Task[Task Created] --> Assign[Assigned to Team Member]
+
+    Assign --> Level1{2 Hours<br/>No Response?}
+
+    Level1 -->|Yes| L1[Level 1 Escalation<br/>Email + SMS to Assignee]
+    Level1 -->|Completed| Done([Task Complete])
+
+    L1 --> Level2{4 Hours Total<br/>No Response?}
+
+    Level2 -->|Yes| L2[Level 2 Escalation<br/>Team Lead Notified]
+    Level2 -->|Completed| Done
+
+    L2 --> Level3{8 Hours Total<br/>No Response?}
+
+    Level3 -->|Yes| L3[Level 3 Escalation<br/>Department Manager Notified]
+    Level3 -->|Completed| Done
+
+    L3 --> Level4{24 Hours Total<br/>No Response?}
+
+    Level4 -->|Yes| L4[Level 4 Escalation<br/>Chris, Marco, Steve Notified<br/>Flagged on Executive Dashboard]
+    Level4 -->|Completed| Done
+
+    L4 --> Review[Executive Intervention Required]
+    Review --> Done
+
+    style Task fill:#e1f5ff
+    style L1 fill:#fff9c4
+    style L2 fill:#ffcc80
+    style L3 fill:#ff8a65
+    style L4 fill:#ef5350
+    style Done fill:#e1ffe7
+                </div>
+            </div>
+        </div>
+
+        <!-- EXECUTIVE DASHBOARD -->
+        <div class="workflow-section">
+            <h2>4. Executive Dashboard & Visibility</h2>
+            <p>Chris, Marco, and Steve can see the status of all tickets without having to ask anyone. Complete transparency into what's happening across the organization.</p>
+
+            <div class="key-features">
+                <h4>Dashboard Features:</h4>
+                <ul>
+                    <li><strong>Real-Time Status:</strong> See all open tickets and their progress</li>
+                    <li><strong>Department Performance:</strong> Which teams are on time, which are overdue</li>
+                    <li><strong>Overdue Alerts:</strong> Critical items that need attention</li>
+                    <li><strong>Analytics:</strong> Time saved, efficiency gains, ROI metrics</li>
+                    <li><strong>Activity Feed:</strong> Latest updates across all tickets</li>
+                    <li><strong>CSAT Scores:</strong> Client satisfaction tracking</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h4>📊 Showing ROI to Ground Staff</h4>
+                <p><strong>DK's Question:</strong> "Why should I use this system instead of texting 5 people in a group chat?"<br>
+                <strong>Answer:</strong> Dashboard shows: "DK, your 2-minute ticket this week saved 12 hours across HR, Finance, and Operations. Here's proof."</p>
+            </div>
+
+            <div class="diagram-container">
+                <div class="mermaid">
+graph TD
+    Dashboard[Executive Dashboard] --> Metrics[Key Metrics]
+    Dashboard --> Tickets[Live Ticket View]
+    Dashboard --> Reports[Reports & Analytics]
+
+    Metrics --> M1[Open Tickets: 12]
+    Metrics --> M2[Overdue Tasks: 3]
+    Metrics --> M3[Avg Response Time: 1.2 hrs]
+    Metrics --> M4[Time Saved This Month: 45 hrs]
+
+    Tickets --> T1[Ticket #1234: Weekend Miami Detail<br/>Status: Waiting on Finance]
+    Tickets --> T2[Ticket #1235: ESOC Assessment<br/>Status: In Progress]
+    Tickets --> T3[Ticket #1236: Driver Detail<br/>Status: Complete]
+
+    Reports --> R1[Department Performance]
+    Reports --> R2[Client Satisfaction CSAT]
+    Reports --> R3[Time Savings ROI]
+    Reports --> R4[Request Volume Trends]
+
+    style Dashboard fill:#e1f5ff
+    style M2 fill:#ffe1e1
+    style T3 fill:#e1ffe7
+                </div>
+            </div>
+        </div>
+
+        <!-- INTERNAL COMMUNICATION -->
+        <div class="workflow-section">
+            <h2>5. Internal Collaboration with @Mentions</h2>
+            <p>All communication happens within the ticket—no more hunting through email threads. Use @mentions to notify specific people instantly.</p>
+
+            <div class="key-features">
+                <h4>Collaboration Features:</h4>
+                <ul>
+                    <li><strong>@Mentions:</strong> Tag team members for instant notification</li>
+                    <li><strong>Internal Notes:</strong> Visible only to PFC team (not clients)</li>
+                    <li><strong>Activity Timeline:</strong> Complete audit trail of all actions</li>
+                    <li><strong>Document Attachments:</strong> Store contracts, schedules, forms in ticket</li>
+                    <li><strong>Status Updates:</strong> Real-time progress tracking</li>
+                    <li><strong>Cross-Department Handoffs:</strong> "Staffing confirmed → Logistics, you're up!"</li>
+                </ul>
+            </div>
+
+            <div class="diagram-container">
+                <div class="mermaid">
+flowchart LR
+    Sarah[Sarah - Staffing] -->|Confirms 3 personnel| Ticket[Ticket #1234]
+
+    Ticket -->|@Mike Staffing confirmed| Mike[Mike - Logistics]
+
+    Mike -->|Plans transport| Ticket
+
+    Ticket -->|@Lisa Need quote for client| Lisa[Lisa - Finance]
+
+    Lisa -->|Approves budget| Ticket
+
+    Ticket -->|@John Schedule approved| John[John - Scheduling]
+
+    John -->|Finalizes shifts| Ticket
+
+    Ticket -->|All tasks complete| Chris[Chris - Visibility]
+
+    style Ticket fill:#fff4e1
+    style Chris fill:#e1ffe7
+                </div>
+            </div>
+        </div>
+
+        <!-- SAGE AI INTEGRATION -->
+        <div class="workflow-section">
+            <h2>6. Sage Voice AI Integration</h2>
+            <p>Managers can simply call Sage AI and describe the request verbally. Sage captures the details and creates the ticket automatically—no typing, no forms.</p>
+
+            <div class="key-features">
+                <h4>Sage AI Capabilities (100% Confirmed):</h4>
+                <ul>
+                    <li><strong>Natural Language Input:</strong> "PFC Safeguards received client request for weekend detail in Miami..."</li>
+                    <li><strong>Key Detail Extraction:</strong> Client name, job type, date, location, personnel count</li>
+                    <li><strong>Auto-Ticket Creation:</strong> Creates opportunity in Follow-Up Pathway</li>
+                    <li><strong>Call Recording:</strong> Audio attached to ticket for reference</li>
+                    <li><strong>Immediate Confirmation:</strong> "Got it. Ticket #1237 created. HR, Finance, and Operations have been notified."</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h4>🎤 Example Call Flow</h4>
+                <p><strong>Manager:</strong> "Hey Sage, we just got a request from Acme Corp for 5 security personnel this Saturday in Miami Beach, 6pm to 2am."<br>
+                <strong>Sage AI:</strong> "Got it. I've created ticket #1237 for Acme Corp weekend detail. Staffing, Logistics, Finance, and Scheduling teams have been notified. Is there anything else?"<br>
+                <strong>Manager:</strong> "Nope, that's it. Thanks!"</p>
+            </div>
+
+            <div class="diagram-container">
+                <div class="mermaid">
+flowchart TD
+    Call[Manager Calls Sage AI] --> Sage[Sage Answers:<br/>'How can I help?']
+
+    Sage --> Describe[Manager Describes Request Verbally]
+
+    Describe --> Capture[Sage Captures:<br/>Client, Job Type, Date, Location, Personnel]
+
+    Capture --> API[Sage Calls Replit API]
+
+    API --> Create[Create Opportunity in FUP<br/>Attach Call Recording]
+
+    Create --> Route[Trigger AI Routing]
+
+    Route --> Tasks[Create Department Tasks]
+
+    Tasks --> Confirm[Sage Confirms:<br/>'Ticket #1237 created']
+
+    Confirm --> Done([Manager Continues<br/>No Extra Work])
+
+    style Call fill:#e1f5ff
+    style Sage fill:#fff4e1
+    style Create fill:#e7f5e1
+    style Done fill:#e1ffe7
+                </div>
+            </div>
+        </div>
+
+        <!-- MVP IMPLEMENTATION PLAN -->
+        <div class="workflow-section">
+            <h2>7. MVP Implementation: Crawl, Walk, Run</h2>
+            <p>We don't build everything at once. Start with one use case, prove it works, get buy-in, then expand.</p>
+
+            <div class="key-features">
+                <h4>Phase 1 - Crawl (Weeks 1-2): Build MVP</h4>
+                <ul>
+                    <li>Pick ONE use case: Weekend detail request (most common)</li>
+                    <li>Set up Follow-Up Pathway pipeline and custom fields</li>
+                    <li>Build Replit middleware for AI routing</li>
+                    <li>Configure 2-3 intake methods (email, text, Sage AI)</li>
+                    <li>Connect to 3 departments: Staffing, Finance, Scheduling</li>
+                    <li>Basic escalation workflows (2hr, 4hr reminders)</li>
+                </ul>
+            </div>
+
+            <div class="key-features">
+                <h4>Phase 2 - Walk (Weeks 3-4): Test & Iterate</h4>
+                <ul>
+                    <li>Process 10-15 real tickets through the system</li>
+                    <li>Gather feedback from DK, Steve, and other managers</li>
+                    <li>Adjust intake methods based on what people actually use</li>
+                    <li>Fine-tune AI routing based on accuracy</li>
+                    <li>Build simple dashboard for Chris/Marco/Steve</li>
+                    <li>Show ROI: "Here's how much time we saved"</li>
+                </ul>
+            </div>
+
+            <div class="key-features">
+                <h4>Phase 3 - Run (Month 2+): Expand</h4>
+                <ul>
+                    <li>Add more use cases: ESOC requests, driver details, etc.</li>
+                    <li>Include Logistics and ESOC departments</li>
+                    <li>Build out full escalation system (24hr executive alerts)</li>
+                    <li>Create advanced dashboard with analytics</li>
+                    <li>Add client portal (if needed)</li>
+                    <li>Integrate with other systems (accounting, calendar, etc.)</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h4>✅ Success Criteria for MVP</h4>
+                <p><strong>Week 4 Goals:</strong><br>
+                • 80% of weekend detail requests go through system (not group texts)<br>
+                • HR/Finance get notified immediately (not 2 days before)<br>
+                • Average response time: under 2 hours<br>
+                • User feedback: "This is easier than the old way"<br>
+                • Executive visibility: Chris/Marco can see status without asking</p>
+            </div>
+        </div>
+
+        <footer>
+            <h3 style="margin-bottom: 15px;">🚀 Next Steps</h3>
+            <p><strong>Ready to build the MVP?</strong></p>
+            <p style="margin-top: 15px;">Week 1: Configure Follow-Up Pathway + build Replit middleware</p>
+            <p>Week 2: Integrate Sage AI + test with real requests</p>
+            <p>Week 3-4: Iterate based on feedback</p>
+            <p style="margin-top: 20px; font-size: 0.9em;">© 2024 Follow-Up Pathway + Happy Path | Custom MVP for PFC</p>
+        </footer>
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>
