@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PFC Follow-Up Pathway Ticketing System - Workflow Diagrams</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .intro {
+            padding: 40px;
+            background: #f7fafc;
+            border-bottom: 3px solid #e2e8f0;
+        }
+
+        .intro h2 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .intro p {
+            color: #4a5568;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .workflow-section {
+            padding: 40px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .workflow-section:last-child {
+            border-bottom: none;
+        }
+
+        .workflow-section h2 {
+            color: #2d3748;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .workflow-section h3 {
+            color: #4a5568;
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+
+        .workflow-section p {
+            color: #718096;
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+
+        .diagram-container {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+
+        .key-features {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .key-features h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .key-features ul {
+            list-style-position: inside;
+            color: #4a5568;
+        }
+
+        .key-features li {
+            margin: 8px 0;
+            padding-left: 10px;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 5px 0;
+            opacity: 0.9;
+        }
+
+        .print-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        .print-button:hover {
+            background: #5568d3;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+            .print-button {
+                display: none;
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PFC Job Request Tracking System</h1>
+            <p>Powered by Follow-Up Pathway</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">Comprehensive Workflow Documentation</p>
+        </header>
+
+        <div class="intro">
+            <h2>🎯 System Overview</h2>
+            <p>This document outlines the complete workflow for PFC's job request tracking system, built on the <strong>Follow-Up Pathway</strong> platform. The system manages client requests from initial intake through final completion, providing accountability, transparency, and seamless communication across all departments.</p>
+
+            <div style="margin-top: 20px;">
+                <span class="badge">Multi-Channel Intake</span>
+                <span class="badge">AI-Powered Assignment</span>
+                <span class="badge">Real-Time Tracking</span>
+                <span class="badge">Automated Escalations</span>
+                <span class="badge">Executive Dashboard</span>
+            </div>
+
+            <button class="print-button" onclick="window.print()">📄 Print/Save as PDF</button>
+        </div>
+
+        <!-- WORKFLOW 1 -->
+        <div class="workflow-section">
+            <h2>1. Master Ticket Lifecycle Overview</h2>
+            <p>This diagram shows the complete end-to-end journey of a job request from initial client contact through final resolution and archival.</p>
+
+            <div class="key-features">
+                <h4>Key Features:</h4>
+                <ul>
+                    <li>Multi-channel intake (Phone, Email, Web Form, SMS)</li>
+                    <li>Parallel processing across departments (Staffing, Logistics, Finance, Scheduling)</li>
+                    <li>Automated escalation for overdue tasks</li>
+                    <li>Client notifications at key milestones</li>
+                    <li>Complete audit trail for compliance</li>
+                </ul>
+            </div>
+
+            <div class="diagram-container">
+                <div class="mermaid">
+flowchart TD
+    Start([Client Request Received]) --> Intake{Intake Channel?}
+
+    Intake -->|Phone| Phone[PFC Rep Creates Ticket Manually]
+    Intake -->|Email| Email[Auto-Parse Email Create Ticket]
+    Intake -->|Web Form| Form[Client Submits Form Create Ticket]
+    Intake -->|SMS| SMS[Text Message Create Ticket]
+
+    Phone --> TicketCreated[Ticket Created in Follow-Up Pathway]
+    Email --> TicketCreated
+    Form --> TicketCreated
+    SMS --> TicketCreated
+
+    TicketCreated --> DataEntry[Capture Client Info Job Type Requirements Priority]
+
+    DataEntry --> AIAnalysis{AI Analysis Available?}
+    AIAnalysis -->|Yes| AIRoute[AI Analyzes Ticket and Determines Departments Needed]
+    AIAnalysis -->|No| ManualRoute[Staff Selects Departments Needed]
+
+    AIRoute --> AutoAssign[Auto-Create Tasks for Each Department]
+    ManualRoute --> AutoAssign
+
+    AutoAssign --> Notify[Send Notifications to Assigned Teams]
+
+    Notify --> Parallel{Parallel Processing}
+
+    Parallel --> Staffing[Staffing Department Task]
+    Parallel --> Logistics[Logistics Department Task]
+    Parallel --> Finance[Finance Department Task]
+    Parallel --> Scheduling[Scheduling Department Task]
+
+    Staffing --> StaffComplete{Task Complete?}
+    Logistics --> LogComplete{Task Complete?}
+    Finance --> FinComplete{Task Complete?}
+    Scheduling --> SchedComplete{Task Complete?}
+
+    StaffComplete -->|No| StaffEscalate{Overdue?}
+    LogComplete -->|No| LogEscalate{Overdue?}
+    FinComplete -->|No| FinEscalate{Overdue?}
+    SchedComplete -->|No| SchedEscalate{Overdue?}
+
+    StaffEscalate -->|Yes| EscalateStaff[Send Escalation Alert]
+    LogEscalate -->|Yes| EscalateLog[Send Escalation Alert]
+    FinEscalate -->|Yes| EscalateFin[Send Escalation Alert]
+    SchedEscalate -->|Yes| EscalateSched[Send Escalation Alert]
+
+    EscalateStaff --> Staffing
+    EscalateLog --> Logistics
+    EscalateFin --> Finance
+    EscalateSched --> Scheduling
+
+    StaffComplete -->|Yes| CheckAll1[Update Ticket]
+    LogComplete -->|Yes| CheckAll2[Update Ticket]
+    FinComplete -->|Yes| CheckAll3[Update Ticket]
+    SchedComplete -->|Yes| CheckAll4[Update Ticket]
+
+    CheckAll1 --> AllComplete{All Departments Complete?}
+    CheckAll2 --> AllComplete
+    CheckAll3 --> AllComplete
+    CheckAll4 --> AllComplete
+
+    AllComplete -->|No| Notify
+    AllComplete -->|Yes| FinalReview[Final Review by PFC Rep]
+
+    FinalReview --> ClientUpdate[Notify Client Job Ready to Deploy]
+    ClientUpdate --> Deploy[Execute Job]
+    Deploy --> Close[Mark Ticket as Resolved]
+    Close --> Archive[Archive to Historical Records]
+    Archive --> End([End])
+
+    style Start fill:#e1f5ff
+    style TicketCreated fill:#fff4e1
+    style AutoAssign fill:#e7f5e1
+    style AllComplete fill:#ffe1e1
+    style Close fill:#e1ffe7
+    style End fill:#e1f5ff
+                </div>
+            </div>
+        </div>
+
+        <!-- WORKFLOW 2 -->
+        <div class="workflow-section">
+            <h2>2. Detailed Intake Workflows</h2>
+            <p>Four distinct intake channels ensure clients can submit requests through their preferred method. Each channel automatically creates a structured ticket in Follow-Up Pathway.</p>
+
+            <div class="key-features">
+                <h4>Intake Channels:</h4>
+                <ul>
+                    <li><strong>Email:</strong> Automatic parsing extracts key information and creates ticket</li>
+                    <li><strong>Phone:</strong> Rep-assisted intake with call recording attached to ticket</li>
+                    <li><strong>Web Form:</strong> Self-service portal with instant confirmation</li>
+                    <li><strong>SMS:</strong> Quick text-to-ticket with automated acknowledgment</li>
+                </ul>
+            </div>
+
+            <div class="diagram-container">
+                <div class="mermaid">
+flowchart TD
+    E1[Email Sent to requests@pfc.com] --> E2[Follow-Up Pathway Email Parser Triggered]
+    E2 --> E3{Email Parser Extracts Data}
+    E3 --> E4[Client Name]
+    E3 --> E5[Job Type Description]
+    E3 --> E6[Urgency Keywords]
+    E3 --> E7[Date Time References]
+    E4 --> E8[Create Opportunity in Job Requests Pipeline]
+    E5 --> E8
+    E6 --> E8
+    E7 --> E8
+    E8 --> E9[Auto-populate Custom Fields]
+    E9 --> E10[Send Confirmation Email to Client with Ticket Number]
+
+    P1[Client Calls PFC] --> P2[Rep Answers via Follow-Up Pathway Phone]
+    P2 --> P3[Call Logged Automatically]
+    P3 --> P4[Rep Opens New Opportunity]
+    P4 --> P5[Fill Out Intake Form]
+    P5 --> P6[Save Opportunity]
+    P6 --> P7[Attach Call Recording to Ticket]
+
+    F1[Client Visits PFC Portal] --> F2[Fills Out Job Request Form]
+    F2 --> F3[Form Fields Contact Info Job Type Description Dates]
+    F3 --> F4[Submit Form]
+    F4 --> F5[Webhook Triggers]
+    F5 --> F6[Create Opportunity in Follow-Up Pathway]
+    F6 --> F7[Auto-send Confirmation with Ticket Number]
+
+    S1[Client Texts PFC Number] --> S2[SMS Received in Follow-Up Pathway]
+    S2 --> S3{Existing Contact?}
+    S3 -->|Yes| S4[Create Opportunity Linked to Contact]
+    S3 -->|No| S5[Create New Contact Then Create Opportunity]
+    S4 --> S6[Auto-reply with Ticket Number]
+    S5 --> S6
+    S6 --> S7[Flag for Rep Review to gather more details]
+
+    E10 --> NextStep[Proceed to Assignment]
+    P7 --> NextStep
+    F7 --> NextStep
+    S7 --> NextStep
+                </div>
+            </div>
+        </div>
+
+        <!-- WORKFLOW 3 -->
+        <div class="workflow-section">
+            <h2>3. AI-Powered Auto-Assignment Logic</h2>
+            <p>Advanced AI integration analyzes each ticket and intelligently determines which departments need to be involved, what resources are required, and how to prioritize the work.</p>
+
+            <div class="key-features">
+                <h4>AI Capabilities:</h4>
+                <ul>
+                    <li>Natural language processing of ticket descriptions</li>
+                    <li>Automatic identification of required departments</li>
+                    <li>Extraction of key details (staffing numbers, dates, budget hints)</li>
+                    <li>Priority assignment based on urgency indicators</li>
+                    <li>Historical pattern recognition for similar job types</li>
+                </ul>
+            </div>
+
+            <div class="diagram-container">
+                <div class="mermaid">
+flowchart TD
+    Start[New Ticket Created] --> Webhook[Trigger Webhook to Replit AI Service]
+
+    Webhook --> Extract[Extract Ticket Data]
+
+    Extract --> AI[Send to Claude API with Custom Prompt]
+
+    AI --> Analyze{AI Analysis}
+
+    Analyze --> Determine[Determine Required Departments]
+
+    Determine --> Check1{Staffing Needed?}
+    Determine --> Check2{Logistics Needed?}
+    Determine --> Check3{Finance Needed?}
+    Determine --> Check4{Scheduling Needed?}
+
+    Check1 -->|Yes| Staff[Identify Staffing Requirements]
+    Check1 -->|No| Skip1[Skip Staffing]
+
+    Check2 -->|Yes| Log[Identify Logistics Requirements]
+    Check2 -->|No| Skip2[Skip Logistics]
+
+    Check3 -->|Yes| Fin[Identify Finance Requirements]
+    Check3 -->|No| Skip3[Skip Finance]
+
+    Check4 -->|Yes| Sched[Identify Scheduling Requirements]
+    Check4 -->|No| Skip4[Skip Scheduling]
+
+    Staff --> Priority1[Assign Priority Level to Task]
+    Log --> Priority2[Assign Priority Level to Task]
+    Fin --> Priority3[Assign Priority Level to Task]
+    Sched --> Priority4[Assign Priority Level to Task]
+
+    Priority1 --> Assign1[Auto-Assign to Staffing Team]
+    Priority2 --> Assign2[Auto-Assign to Logistics Team]
+    Priority3 --> Assign3[Auto-Assign to Finance Team]
+    Priority4 --> Assign4[Auto-Assign to Scheduling Team]
+
+    Skip1 --> Response
+    Skip2 --> Response
+    Skip3 --> Response
+    Skip4 --> Response
+    Assign1 --> Response[Send Response Back to Follow-Up Pathway]
+    Assign2 --> Response
+    Assign3 --> Response
+    Assign4 --> Response
+
+    Response --> CreateTasks[Create Individual Tasks in Follow-Up Pathway]
+
+    CreateTasks --> UpdateOpp[Update Opportunity with AI Analysis Notes]
+
+    UpdateOpp --> SendNotif[Trigger Notification Workflow]
+
+    style Start fill:#e1f5ff
+    style AI fill:#fff4e1
+    style Response fill:#e7f5e1
+    style SendNotif fill:#e1ffe7
+                </div>
+            </div>
+        </div>
+
+        <!-- WORKFLOW 4 -->
+        <div class="workflow-section">
+            <h2>4. Department Task Workflow (Staffing Example)</h2>
+            <p>This detailed view shows how individual departments process their assigned tasks, escalate issues when needed, and coordinate with other teams.</p>
+
+            <div class="key-features">
+                <h4>Process Features:</h4>
+                <ul>
+                    <li>Multi-channel notifications ensure tasks aren't missed</li>
+                    <li>Built-in escalation path for resource conflicts</li>
+                    <li>Supervisor override capabilities</li>
+                    <li>Documentation of all decisions and actions</li>
+                    <li>Automatic coordination check with other departments</li>
+                </ul>
+            </div>
+
+            <div class="diagram-container">
+                <div class="mermaid">
+flowchart TD
+    Start[Task Assigned to Staffing Team] --> Notify[Team Members Receive Notifications]
+
+    Notify --> View[Team Member Opens Task in Follow-Up Pathway]
+
+    View --> Review[Review Requirements]
+
+    Review --> Check{Can Fulfill?}
+
+    Check -->|Yes| Plan[Create Staffing Plan]
+    Check -->|No| Issue[Document Issue]
+
+    Issue --> Escalate1[Escalate to Supervisor]
+    Escalate1 --> Supervisor[Supervisor Reviews]
+    Supervisor --> Resolution{Resolution?}
+    Resolution -->|Find Solution| Plan
+    Resolution -->|Cannot Fulfill| NotifyClient[Update Client Discuss Alternatives]
+
+    Plan --> Identify[Identify Specific Staff Members]
+    Identify --> Confirm[Confirm Availability with Staff]
+    Confirm --> Available{All Available?}
+
+    Available -->|No| FindBackup[Find Backup Options]
+    FindBackup --> Confirm
+    Available -->|Yes| Document[Document Staffing Plan in Task Notes]
+
+    Document --> UpdateTask[Mark Task as Complete]
+    UpdateTask --> UpdateOpp[Update Ticket in Follow-Up Pathway]
+
+    UpdateOpp --> CheckOthers{All Other Departments Done?}
+
+    CheckOthers -->|No| Wait[Wait for Other Departments]
+    CheckOthers -->|Yes| Final[Trigger Final Review]
+
+    NotifyClient --> Log[Log Issue in Ticket]
+    Log --> UpdateTask
+
+    Wait --> Monitor[Continue Monitoring for Updates]
+    Final --> Complete([Task Complete])
+
+    style Start fill:#e1f5ff
+    style Escalate1 fill:#ffe1e1
+    style UpdateTask fill:#e7f5e1
+    style Complete fill:#e1ffe7
+                </div>
+            </div>
+        </div>
+
+        <!-- WORKFLOW 5 -->
+        <div class="workflow-section">
+            <h2>5. Escalation & Notification System</h2>
+            <p>A comprehensive four-level escalation system ensures no task falls through the cracks. Executives receive real-time visibility into critical issues while team members get timely reminders.</p>
+
+            <div class="key-features">
+                <h4>Escalation Levels:</h4>
+                <ul>
+                    <li><strong>Level 1 (2 hours):</strong> Gentle reminder to assigned person</li>
+                    <li><strong>Level 2 (4 hours):</strong> Team lead notification</li>
+                    <li><strong>Level 3 (8 hours):</strong> Department manager alert</li>
+                    <li><strong>Level 4 (24 hours):</strong> Executive team (Marco) notification</li>
+                </ul>
+            </div>
+
+            <div class="diagram-container">
+                <div class="mermaid">
+flowchart TD
+    I1[Task Created] --> I2[Send Immediate Notifications]
+    I2 --> I3[Email to Assigned Team]
+    I2 --> I4[SMS to Team Lead]
+    I2 --> I5[In-App Alert]
+    I3 --> I6[Include Ticket Details]
+    I4 --> I6
+    I5 --> I6
+
+    E1[Level 1: 2 Hour Mark] --> E2[Send Reminder to Assigned Person]
+    E2 --> E3[Email plus SMS]
+
+    E4[Level 2: 4 Hour Mark] --> E5[Notify Team Lead]
+    E5 --> E6[Email plus SMS plus Call]
+
+    E7[Level 3: 8 Hour Mark] --> E8[Notify Department Manager]
+    E8 --> E9[Email plus SMS plus Call]
+    E9 --> E10[Add to Manager Daily Digest]
+
+    E11[Level 4: 24 Hour Mark] --> E12[Notify Executive Team Marco]
+    E12 --> E13[Email plus SMS]
+    E13 --> E14[Add to Executive Dashboard as Critical Overdue]
+
+    X1[Daily Digest 8am] --> X2[Summary Report to Marco]
+
+    X3[Weekly Report Monday 8am] --> X4[Detailed Analytics]
+
+    X5[Real-Time Alerts] --> X6[Critical Issues]
+
+    I6 --> Monitor[Continue Monitoring]
+    E3 --> Monitor
+    E6 --> Monitor
+    E10 --> Monitor
+    E14 --> Monitor
+
+    style E1 fill:#fff9c4
+    style E4 fill:#ffcc80
+    style E7 fill:#ff8a65
+    style E11 fill:#ef5350
+                </div>
+            </div>
+        </div>
+
+        <!-- WORKFLOW 6 -->
+        <div class="workflow-section">
+            <h2>6. Ticket Resolution & Closure Workflow</h2>
+            <p>The final stage ensures all loose ends are tied up, client satisfaction is confirmed, payment is received, and comprehensive data is captured for future analysis.</p>
+
+            <div class="key-features">
+                <h4>Closure Steps:</h4>
+                <ul>
+                    <li>Comprehensive review of all department outputs</li>
+                    <li>Internal and client approval checkpoints</li>
+                    <li>Job execution monitoring</li>
+                    <li>Invoice and payment tracking</li>
+                    <li>Client satisfaction survey</li>
+                    <li>Data archival and analytics update</li>
+                </ul>
+            </div>
+
+            <div class="diagram-container">
+                <div class="mermaid">
+flowchart TD
+    Start[All Department Tasks Completed] --> Aggregate[System Aggregates All Data]
+
+    Aggregate --> Notify[Notify PFC Project Coordinator]
+
+    Notify --> Review[Coordinator Reviews Complete Ticket]
+
+    Review --> Check{Everything Ready?}
+
+    Check -->|No| Issues[Identify Missing Pieces]
+    Issues --> Follow[Follow Up with Relevant Department]
+    Follow --> Review
+
+    Check -->|Yes| Package[Package Final Plan]
+
+    Package --> Internal[Internal Approval Check]
+
+    Internal --> Finance{Finance Approval Needed?}
+
+    Finance -->|Yes| FinReview[Finance Director Reviews Approves]
+    Finance -->|No| Client
+
+    FinReview --> Approved{Approved?}
+    Approved -->|No| Revise[Revise Budget Scope]
+    Revise --> Finance
+    Approved -->|Yes| Client[Prepare Client Communication]
+
+    Client --> SendUpdate[Send Client Update]
+
+    SendUpdate --> ClientReview{Client Approval?}
+
+    ClientReview -->|Needs Changes| Modify[Document Changes Needed]
+    Modify --> ReAssign[Re-assign to Relevant Department for Updates]
+    ReAssign --> Review
+
+    ClientReview -->|Approved| Schedule[Mark as Ready to Deploy]
+
+    Schedule --> Deploy[Execute Job on Scheduled Date]
+
+    Deploy --> Monitor[Monitor Job Execution]
+
+    Monitor --> Complete{Job Completed Successfully?}
+
+    Complete -->|Issues| Document[Document Issues and Resolutions]
+    Document --> Complete
+
+    Complete -->|Yes| Final[Final Documentation]
+
+    Final --> Invoice{Invoice Sent?}
+
+    Invoice -->|No| CreateInvoice[Create Send Invoice]
+    CreateInvoice --> Invoice
+
+    Invoice -->|Yes| Payment{Payment Received?}
+
+    Payment -->|No| FollowUp[Follow-up on Payment]
+    FollowUp --> Wait[Wait Period]
+    Wait --> Payment
+
+    Payment -->|Yes| Close[Close Ticket as RESOLVED]
+
+    Close --> Survey[Send Client Satisfaction Survey]
+
+    Survey --> Record[Record All Data]
+
+    Record --> Archive[Archive to Historical Database]
+
+    Archive --> Analytics[Update Analytics]
+
+    Analytics --> End([Ticket Lifecycle Complete])
+
+    style Start fill:#e1f5ff
+    style Check fill:#fff4e1
+    style Close fill:#e7f5e1
+    style End fill:#e1ffe7
+    style ClientReview fill:#ffe1e1
+    style Payment fill:#ffe1e1
+                </div>
+            </div>
+        </div>
+
+        <!-- WORKFLOW 7 -->
+        <div class="workflow-section">
+            <h2>7. Communication & Collaboration Workflow</h2>
+            <p>All communication—internal, with clients, and cross-departmental—is centralized within each ticket, creating a complete audit trail and eliminating information silos.</p>
+
+            <div class="key-features">
+                <h4>Communication Features:</h4>
+                <ul>
+                    <li>Internal notes visible only to PFC team</li>
+                    <li>@Mentions trigger immediate notifications</li>
+                    <li>Multi-channel client communication (email, SMS, phone, portal)</li>
+                    <li>Automatic logging of all interactions</li>
+                    <li>Document sharing with granular permissions</li>
+                    <li>Cross-department handoff notifications</li>
+                </ul>
+            </div>
+
+            <div class="diagram-container">
+                <div class="mermaid">
+flowchart TD
+    IC1[Team Member Opens Ticket] --> IC2[Add Comment or Note]
+    IC2 --> IC3{Comment Type?}
+    IC3 -->|Internal Note| IC4[Visible to PFC Team Only]
+    IC3 -->|Mention Someone| IC5[Notify Mentioned Person]
+    IC3 -->|Status Update| IC6[Update Timeline]
+    IC3 -->|Question or Blocker| IC7[Flag as Needs Attention]
+
+    IC4 --> IC8[Log in Activity Feed]
+    IC5 --> IC8
+    IC6 --> IC8
+    IC7 --> IC8
+
+    CC1[Client Needs Update] --> CC2{Communication Channel?}
+    CC2 -->|Email| CC3[Send from Follow-Up Pathway Email System]
+    CC2 -->|SMS| CC4[Send via FUP SMS]
+    CC2 -->|Phone| CC5[Call via FUP Phone]
+    CC2 -->|Portal| CC6[Update in Client Portal]
+
+    CC3 --> CC7[Email Auto-logged to Ticket]
+    CC4 --> CC7
+    CC5 --> CC7
+    CC6 --> CC7
+
+    CC7 --> CC8[Client Receives Update]
+    CC8 --> CC9{Client Responds?}
+    CC9 -->|Yes| CC10[Response Auto-logged]
+    CC10 --> CC11[Notify Relevant Team Members]
+
+    DS1[Need to Share Document] --> DS2[Upload to Ticket]
+    DS2 --> DS3{Document Type?}
+    DS3 -->|Contract Agreement| DS4[Store in Contracts Folder]
+    DS3 -->|Invoice Quote| DS5[Store in Finance Folder]
+    DS3 -->|Schedule Roster| DS6[Store in Operations Folder]
+    DS3 -->|Other| DS7[Store in General Folder]
+
+    DS4 --> DS8[Link Document to Ticket]
+    DS5 --> DS8
+    DS6 --> DS8
+    DS7 --> DS8
+
+    DS8 --> DS9[Set Permissions Who can view or edit]
+    DS9 --> DS10[Notify Relevant Parties]
+
+    CD1[Staffing Completes Task] --> CD2[Update Ticket Status]
+    CD2 --> CD3[Notify Logistics Staffing confirmed]
+
+    CD3 --> CD4[Logistics Reviews Staffing Info]
+    CD4 --> CD5[Logistics Plans Around Staffing]
+    CD5 --> CD6[Questions for Staffing?]
+
+    CD6 -->|Yes| CD7[Add Comment Mention Staffing]
+    CD7 --> CD8[Staffing Notified]
+    CD8 --> CD9[Staffing Responds]
+    CD9 --> CD4
+
+    CD6 -->|No| CD10[Logistics Completes Task]
+    CD10 --> CD11[Notify Next Department]
+
+    IC8 --> Central[All Communication Centralized in Ticket]
+    CC11 --> Central
+    DS10 --> Central
+    CD11 --> Central
+
+    Central --> Audit[Complete Audit Trail for Compliance Review]
+
+    style Central fill:#e1f5ff
+    style Audit fill:#e7f5e1
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <h3 style="margin-bottom: 15px;">🚀 Next Steps</h3>
+            <p><strong>Ready to implement this system for PFC?</strong></p>
+            <p style="margin-top: 15px;">Contact your Follow-Up Pathway team to begin Phase 1 implementation.</p>
+            <p style="margin-top: 20px; font-size: 0.9em;">© 2024 Follow-Up Pathway | Custom Solution for PFC</p>
+        </footer>
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>
