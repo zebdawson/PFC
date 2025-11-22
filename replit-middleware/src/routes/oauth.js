@@ -54,13 +54,15 @@ router.get('/callback', async (req, res) => {
   try {
     logger.info('Exchanging authorization code for access token');
 
-    const response = await axios.post('https://services.leadconnectorhq.com/oauth/token', {
-      client_id: CLIENT_ID,
-      client_secret: CLIENT_SECRET,
-      grant_type: 'authorization_code',
-      code: code,
-      redirect_uri: REDIRECT_URI
-    }, {
+    // Encode data as x-www-form-urlencoded
+    const params = new URLSearchParams();
+    params.append('client_id', CLIENT_ID);
+    params.append('client_secret', CLIENT_SECRET);
+    params.append('grant_type', 'authorization_code');
+    params.append('code', code);
+    params.append('redirect_uri', REDIRECT_URI);
+
+    const response = await axios.post('https://services.leadconnectorhq.com/oauth/token', params, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
@@ -144,12 +146,14 @@ async function getAccessToken() {
  */
 async function refreshAccessToken() {
   try {
-    const response = await axios.post('https://services.leadconnectorhq.com/oauth/token', {
-      client_id: CLIENT_ID,
-      client_secret: CLIENT_SECRET,
-      grant_type: 'refresh_token',
-      refresh_token: accessTokenStore.refreshToken
-    }, {
+    // Encode data as x-www-form-urlencoded
+    const params = new URLSearchParams();
+    params.append('client_id', CLIENT_ID);
+    params.append('client_secret', CLIENT_SECRET);
+    params.append('grant_type', 'refresh_token');
+    params.append('refresh_token', accessTokenStore.refreshToken);
+
+    const response = await axios.post('https://services.leadconnectorhq.com/oauth/token', params, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
