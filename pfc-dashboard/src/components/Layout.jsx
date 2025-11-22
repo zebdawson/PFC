@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, ClipboardList, Users, Settings, Bell } from 'lucide-react';
+import { LayoutDashboard, ClipboardList, Users, Settings, Bell, PlusCircle } from 'lucide-react';
 
 export default function Layout({ children }) {
   const location = useLocation();
@@ -9,6 +9,7 @@ export default function Layout({ children }) {
     { name: 'Dashboard', href: '/', icon: LayoutDashboard },
     { name: 'All Tickets', href: '/admin', icon: ClipboardList },
     { name: 'Departments', href: '/departments', icon: Users },
+    { name: 'Submit Request', href: '/intake', icon: PlusCircle, highlight: true },
   ];
 
   const isActive = (path) => {
@@ -40,7 +41,9 @@ export default function Layout({ children }) {
                     key={item.name}
                     to={item.href}
                     className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                      isActive(item.href)
+                      item.highlight
+                        ? 'text-white bg-black hover:bg-gray-800'
+                        : isActive(item.href)
                         ? 'text-blue-600 bg-blue-50'
                         : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
                     }`}

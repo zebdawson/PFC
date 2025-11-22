@@ -4,31 +4,23 @@ import AdminDashboard from './pages/AdminDashboard';
 import DepartmentDashboard from './pages/DepartmentDashboard';
 import Departments from './pages/Departments';
 import TicketDetail from './pages/TicketDetail';
+import IntakeForm from './pages/IntakeForm';
 
 function App() {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          {/* Default route - redirect to admin dashboard */}
-          <Route path="/" element={<Navigate to="/admin" replace />} />
+      <Routes>
+        {/* Intake Form - no layout (full screen) */}
+        <Route path="/intake" element={<IntakeForm />} />
 
-          {/* Admin Dashboard - shows all tickets */}
-          <Route path="/admin" element={<AdminDashboard />} />
-
-          {/* Departments Overview */}
-          <Route path="/departments" element={<Departments />} />
-
-          {/* Individual Department Dashboard */}
-          <Route path="/department/:departmentId" element={<DepartmentDashboard />} />
-
-          {/* Ticket Detail View */}
-          <Route path="/ticket/:ticketId" element={<TicketDetail />} />
-
-          {/* 404 - redirect to admin */}
-          <Route path="*" element={<Navigate to="/admin" replace />} />
-        </Routes>
-      </Layout>
+        {/* All other routes with layout */}
+        <Route path="/" element={<Layout><Navigate to="/admin" replace /></Layout>} />
+        <Route path="/admin" element={<Layout><AdminDashboard /></Layout>} />
+        <Route path="/departments" element={<Layout><Departments /></Layout>} />
+        <Route path="/department/:departmentId" element={<Layout><DepartmentDashboard /></Layout>} />
+        <Route path="/ticket/:ticketId" element={<Layout><TicketDetail /></Layout>} />
+        <Route path="*" element={<Layout><Navigate to="/admin" replace /></Layout>} />
+      </Routes>
     </Router>
   );
 }

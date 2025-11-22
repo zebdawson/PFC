@@ -7,7 +7,8 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "test": "node src/test-ghl-connection.js",
-    "get-pipelines": "node src/get-pipeline-info.js"
+    "get-pipelines": "node src/get-pipeline-info.js",
+    "get-config": "node src/get-all-config.js"
   },
   "keywords": [
     "gohighlevel",
