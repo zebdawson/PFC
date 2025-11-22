@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "node src/test-ghl-connection.js"
+    "test": "node src/test-ghl-connection.js",
+    "get-pipelines": "node src/get-pipeline-info.js"
   },
   "keywords": [
     "gohighlevel",
