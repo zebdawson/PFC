@@ -131,6 +131,48 @@ app.get('/test/ghl', async (req, res) => {
   }
 });
 
+// Test endpoint to list available pipelines
+app.get('/test/pipelines', async (req, res) => {
+  try {
+    const ghlClient = require('./services/ghlClient');
+    const axios = require('axios');
+
+    // Get access token
+    const token = await getAccessToken();
+    const locationId = getLocationId();
+
+    logger.info('Fetching pipelines for location', { locationId });
+
+    // Fetch all pipelines for this location
+    const response = await axios.get(`https://services.leadconnectorhq.com/opportunities/pipelines`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Version': '2021-07-28'
+      },
+      params: {
+        locationId: locationId
+      }
+    });
+
+    res.json({
+      success: true,
+      locationId: locationId,
+      pipelines: response.data.pipelines
+    });
+  } catch (error) {
+    logger.error('Failed to fetch pipelines', {
+      error: error.message,
+      response: error.response?.data
+    });
+
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      details: error.response?.data
+    });
+  }
+});
+
 // Test creating a minimal opportunity to diagnose 400 errors
 app.get('/test/create-opportunity', async (req, res) => {
   try {
