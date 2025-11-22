@@ -3,14 +3,17 @@ const logger = require('../utils/logger');
 
 class GHLClient {
   constructor() {
-    this.apiKey = process.env.GHL_API_KEY;
+    this.agencyToken = process.env.GHL_API_KEY;
     this.locationId = process.env.GHL_LOCATION_ID;
     this.baseURL = 'https://services.leadconnectorhq.com';
+    this.locationToken = null;
+    this.tokenInitialized = false;
+    this.tokenPromise = null;
 
     this.client = axios.create({
       baseURL: this.baseURL,
       headers: {
-        'Authorization': `Bearer ${this.apiKey}`,
+        'Authorization': `Bearer ${this.agencyToken}`,
         'Content-Type': 'application/json',
         'Version': '2021-07-28'
       },
@@ -18,6 +21,43 @@ class GHLClient {
     });
 
     logger.info('GHL Client initialized', { locationId: this.locationId });
+  }
+
+  /**
+   * Get location access token from agency token
+   * This converts an agency-level Private Integration token to a location-specific token
+   */
+  async ensureLocationToken() {
+    // If already initialized or in progress, return
+    if (this.tokenInitialized) return;
+    if (this.tokenPromise) return this.tokenPromise;
+
+    this.tokenPromise = (async () => {
+      try {
+        logger.info('Attempting to get location-specific access token...');
+        const response = await this.client.post('/oauth/locationToken', {
+          companyId: this.locationId
+        });
+
+        this.locationToken = response.data.access_token;
+
+        // Update client to use location token
+        this.client.defaults.headers['Authorization'] = `Bearer ${this.locationToken}`;
+
+        logger.info('Location access token obtained successfully');
+        this.tokenInitialized = true;
+      } catch (error) {
+        logger.warn('Could not get location token, using agency token directly', {
+          error: error.message,
+          status: error.response?.status
+        });
+        // If this fails, we'll just use the agency token directly
+        // This handles the case where the token is already a sub-account token
+        this.tokenInitialized = true; // Mark as initialized to not retry
+      }
+    })();
+
+    return this.tokenPromise;
   }
 
   /**
@@ -43,6 +83,9 @@ class GHLClient {
    * Create or update a contact
    */
   async createContact(contactData) {
+    // Ensure we have a location-specific token
+    await this.ensureLocationToken();
+
     // Define payload outside try block so it's accessible in catch
     const payload = {
       firstName: contactData.firstName,
@@ -159,6 +202,9 @@ class GHLClient {
    * Create an opportunity (ticket)
    */
   async createOpportunity(opportunityData) {
+    // Ensure we have a location-specific token
+    await this.ensureLocationToken();
+
     try {
       const payload = {
         pipelineId: opportunityData.pipelineId || process.env.PFC_PIPELINE_ID,
