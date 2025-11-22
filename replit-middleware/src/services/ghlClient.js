@@ -77,6 +77,31 @@ class GHLClient {
         return response.data.contact;
       }
     } catch (error) {
+      // Check if it's a duplicate contact error
+      if (error.response?.status === 400 &&
+          error.response?.data?.message?.includes('duplicated contacts') &&
+          error.response?.data?.meta?.contactId) {
+
+        // GHL told us the duplicate contact ID - use it!
+        const existingContactId = error.response.data.meta.contactId;
+        logger.info('Contact already exists, updating instead', {
+          contactId: existingContactId,
+          matchingField: error.response.data.meta.matchingField
+        });
+
+        try {
+          const response = await this.client.put(`/contacts/${existingContactId}`, payload);
+          logger.info('Duplicate contact updated', { contactId: existingContactId });
+          return response.data.contact;
+        } catch (updateError) {
+          logger.error('Error updating duplicate contact', {
+            error: updateError.message,
+            contactId: existingContactId
+          });
+          throw updateError;
+        }
+      }
+
       logger.error('Error creating/updating contact', {
         error: error.message,
         email: contactData.email
