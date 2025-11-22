@@ -113,16 +113,48 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Test GHL connection
+// Test GHL connection and optionally fetch pipelines
 app.get('/test/ghl', async (req, res) => {
   try {
     const ghlClient = require('./services/ghlClient');
+    const axios = require('axios');
+    const fetchPipelines = req.query.pipelines === 'true';
+
     const result = await ghlClient.testConnection();
-    res.json({
+
+    const response = {
       success: true,
       message: 'GHL connection successful',
       location: result.location
-    });
+    };
+
+    // If pipelines=true query param, also fetch pipelines
+    if (fetchPipelines) {
+      try {
+        const token = await getAccessToken();
+        const locationId = getLocationId();
+
+        const pipelinesRes = await axios.get('https://services.leadconnectorhq.com/opportunities/pipelines', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Version': '2021-07-28'
+          },
+          params: {
+            locationId: locationId
+          }
+        });
+
+        response.pipelines = pipelinesRes.data.pipelines;
+        response.locationId = locationId;
+      } catch (pipelineError) {
+        response.pipelineError = {
+          message: pipelineError.message,
+          details: pipelineError.response?.data
+        };
+      }
+    }
+
+    res.json(response);
   } catch (error) {
     res.status(500).json({
       success: false,
