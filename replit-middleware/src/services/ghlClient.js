@@ -12,8 +12,7 @@ class GHLClient {
       headers: {
         'Authorization': `Bearer ${this.apiKey}`,
         'Content-Type': 'application/json',
-        'Version': '2021-07-28',
-        'locationId': this.locationId
+        'Version': '2021-07-28'
       },
       timeout: 10000
     });
