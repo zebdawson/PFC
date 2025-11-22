@@ -205,7 +205,18 @@ router.post('/sage', async (req, res) => {
     // Create ticket
     const result = await ticketService.createTicket(ticketData, 'sage-ai');
 
-    // TODO: Attach call recording to opportunity if URL provided
+    // Attach call recording to opportunity if URL provided
+    if (voiceData.recordingUrl) {
+      const ghlClient = require('../services/ghlClient');
+      await ghlClient.addNote(
+        result.opportunityId,
+        `📞 Call Recording\n\nRecording URL: ${voiceData.recordingUrl}\nDuration: ${voiceData.duration || 'N/A'}\nCaller: ${voiceData.caller}`
+      );
+      logger.info('Call recording attached to opportunity', {
+        opportunityId: result.opportunityId,
+        recordingUrl: voiceData.recordingUrl
+      });
+    }
 
     res.status(200).json({
       success: true,
