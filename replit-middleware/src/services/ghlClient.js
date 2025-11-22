@@ -37,7 +37,6 @@ class GHLClient {
   get locationId() {
     return getLocationId ? getLocationId() : process.env.GHL_LOCATION_ID;
   }
-}
 
   /**
    * Test API connection
