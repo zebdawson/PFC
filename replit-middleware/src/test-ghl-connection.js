@@ -1,12 +1,39 @@
 require('dotenv').config();
 const ghlClient = require('./services/ghlClient');
+const { getAccessToken, getLocationId } = require('./routes/oauth');
 const logger = require('./utils/logger');
+
+// Configure GHL Client to use OAuth tokens (same as index.js does)
+ghlClient.setOAuthFunctions(getAccessToken, getLocationId);
 
 /**
  * Test script to verify GHL API connection and configuration
  */
 async function testGHLConnection() {
   console.log('\n🔍 Testing GHL API Connection...\n');
+
+  // Check authentication status
+  try {
+    const token = await getAccessToken();
+    const locationId = getLocationId();
+    console.log(`✓ OAuth authenticated`);
+    console.log(`  Location ID: ${locationId}\n`);
+  } catch (error) {
+    console.log('⚠️  OAuth not authorized yet');
+    console.log('   To authorize OAuth:');
+    console.log('   1. Start the server: npm start');
+    console.log('   2. Visit: http://localhost:3000/oauth/auth/ghl');
+    console.log('   3. Complete the authorization flow');
+    console.log('   4. Run this test again\n');
+
+    // Check if API key fallback is available
+    if (process.env.GHL_API_KEY) {
+      console.log('⚠️  Note: API key is configured but GHL now requires OAuth authentication.');
+      console.log('   The API key alone may not work for all endpoints.\n');
+    }
+
+    console.log('Attempting to continue with available authentication...\n');
+  }
 
   try {
     // Test 1: Basic connection
