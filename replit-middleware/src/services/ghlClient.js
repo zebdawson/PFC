@@ -1,27 +1,43 @@
 const axios = require('axios');
 const logger = require('../utils/logger');
 
+// Import OAuth token getter (will be set after oauth module loads)
+let getAccessToken = null;
+let getLocationId = null;
+
 class GHLClient {
   constructor() {
-    this.apiKey = process.env.GHL_API_KEY;
-    this.locationId = process.env.GHL_LOCATION_ID;
     this.baseURL = 'https://services.leadconnectorhq.com';
 
     this.client = axios.create({
       baseURL: this.baseURL,
       headers: {
-        'Authorization': `Bearer ${this.apiKey}`,
         'Content-Type': 'application/json',
         'Version': '2021-07-28'
       },
       timeout: 10000
     });
 
-    logger.info('GHL Client initialized', {
-      locationId: this.locationId,
-      tokenPrefix: this.apiKey?.substring(0, 8)
+    // Add request interceptor to inject current access token
+    this.client.interceptors.request.use(async (config) => {
+      try {
+        if (getAccessToken) {
+          const token = await getAccessToken();
+          config.headers['Authorization'] = `Bearer ${token}`;
+        }
+      } catch (error) {
+        logger.warn('Could not get access token', { error: error.message });
+      }
+      return config;
     });
+
+    logger.info('GHL Client initialized with OAuth');
   }
+
+  get locationId() {
+    return getLocationId ? getLocationId() : process.env.GHL_LOCATION_ID;
+  }
+}
 
   /**
    * Test API connection
@@ -354,4 +370,13 @@ class GHLClient {
   }
 }
 
-module.exports = new GHLClient();
+const ghlClient = new GHLClient();
+
+// Allow OAuth module to set token getters
+ghlClient.setOAuthFunctions = (tokenGetter, locationGetter) => {
+  getAccessToken = tokenGetter;
+  getLocationId = locationGetter;
+  logger.info('OAuth functions configured for GHL Client');
+};
+
+module.exports = ghlClient;

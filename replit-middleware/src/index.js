@@ -6,6 +6,11 @@ const helmet = require('helmet');
 const logger = require('./utils/logger');
 
 const webhookRoutes = require('./routes/webhooks');
+const { router: oauthRouter, getAccessToken, getLocationId } = require('./routes/oauth');
+const ghlClient = require('./services/ghlClient');
+
+// Configure GHL Client to use OAuth tokens
+ghlClient.setOAuthFunctions(getAccessToken, getLocationId);
 
 // Initialize Express app
 const app = express();
@@ -50,6 +55,9 @@ app.get('/', (req, res) => {
     }
   });
 });
+
+// Mount OAuth routes
+app.use('/oauth', oauthRouter);
 
 // Mount webhook routes
 app.use('/webhook', webhookRoutes);
