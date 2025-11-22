@@ -111,6 +111,14 @@ app.get('/test/create-opportunity', async (req, res) => {
       contactId: contact.id
     });
 
+    // DEBUG: Log all environment variables being used
+    console.log({
+      tokenPrefix: process.env.GHL_API_KEY?.slice(0, 6),
+      locationId: process.env.GHL_LOCATION_ID,
+      pipelineId: process.env.PFC_PIPELINE_ID,
+      stageId: process.env.PFC_DEFAULT_STAGE
+    });
+
     const opportunity = await ghlClient.createOpportunity({
       name: 'Test Diagnostic Opportunity',
       contactId: contact.id,
