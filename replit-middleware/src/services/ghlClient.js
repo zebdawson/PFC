@@ -24,9 +24,15 @@ class GHLClient {
         if (getAccessToken) {
           const token = await getAccessToken();
           config.headers['Authorization'] = `Bearer ${token}`;
+          logger.info('OAuth token injected into request', {
+            url: config.url,
+            tokenPrefix: token?.substring(0, 20) + '...'
+          });
+        } else {
+          logger.warn('No getAccessToken function available');
         }
       } catch (error) {
-        logger.warn('Could not get access token', { error: error.message });
+        logger.error('Could not get access token', { error: error.message });
       }
       return config;
     });
