@@ -29,10 +29,28 @@ class GHLClient {
             tokenPrefix: token?.substring(0, 20) + '...'
           });
         } else {
-          logger.warn('No getAccessToken function available');
+          // Fall back to API key authentication if OAuth not configured
+          const apiKey = process.env.GHL_API_KEY;
+          if (apiKey) {
+            config.headers['Authorization'] = `Bearer ${apiKey}`;
+            logger.info('API key injected into request (OAuth not configured)', {
+              url: config.url
+            });
+          } else {
+            logger.warn('No authentication available - neither OAuth nor API key configured');
+          }
         }
       } catch (error) {
-        logger.error('Could not get access token', { error: error.message });
+        logger.error('Could not get access token, falling back to API key', {
+          error: error.message
+        });
+
+        // Fall back to API key if OAuth token retrieval fails
+        const apiKey = process.env.GHL_API_KEY;
+        if (apiKey) {
+          config.headers['Authorization'] = `Bearer ${apiKey}`;
+          logger.info('Using API key fallback due to OAuth error');
+        }
       }
       return config;
     });

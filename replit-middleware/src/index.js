@@ -42,16 +42,52 @@ app.use((req, res, next) => {
 });
 
 // Health check endpoint
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+  // Get authentication status
+  let authStatus = 'unknown';
+  let authMethod = 'none';
+  const hasOAuthConfig = !!(process.env.GHL_CLIENT_ID &&
+                           process.env.GHL_CLIENT_SECRET &&
+                           process.env.GHL_CLIENT_ID !== 'your-client-id-here');
+  const hasApiKey = !!process.env.GHL_API_KEY;
+
+  try {
+    const locationId = getLocationId();
+    const token = await getAccessToken();
+    if (token) {
+      authStatus = 'oauth_active';
+      authMethod = 'OAuth 2.0';
+    }
+  } catch (error) {
+    if (hasApiKey) {
+      authStatus = 'api_key_fallback';
+      authMethod = 'API Key (Fallback)';
+    } else {
+      authStatus = 'not_configured';
+      authMethod = 'Not Configured';
+    }
+  }
+
   res.json({
     service: 'PFC Ticketing Middleware',
     status: 'running',
     version: '1.0.0',
     timestamp: new Date().toISOString(),
+    authentication: {
+      status: authStatus,
+      method: authMethod,
+      oauthConfigured: hasOAuthConfig,
+      apiKeyAvailable: hasApiKey
+    },
     endpoints: {
       webhooks: '/webhook/*',
       health: '/health',
-      test: '/test'
+      oauth: '/oauth/*',
+      test: '/test/*'
+    },
+    documentation: {
+      oauthSetup: 'OAUTH_SETUP.md',
+      readme: 'README.md'
     }
   });
 });
