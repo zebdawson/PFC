@@ -45,7 +45,6 @@ class GHLClient {
   async createContact(contactData) {
     // Define payload outside try block so it's accessible in catch
     const payload = {
-      locationId: this.locationId,
       firstName: contactData.firstName,
       lastName: contactData.lastName || '',
       email: contactData.email,
