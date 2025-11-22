@@ -256,10 +256,33 @@ router.post('/manual', async (req, res) => {
     });
 
   } catch (error) {
-    logger.error('Error creating manual ticket', { error: error.message });
+    logger.error('Error creating manual ticket', {
+      error: error.message,
+      stack: error.stack,
+      responseData: error.response?.data
+    });
+
+    // Check if it's a configuration error
+    if (error.message.includes('400') || error.response?.status === 400) {
+      const missingConfigs = [];
+      if (!process.env.PFC_PIPELINE_ID) missingConfigs.push('PFC_PIPELINE_ID');
+      if (!process.env.PFC_DEFAULT_STAGE) missingConfigs.push('PFC_DEFAULT_STAGE');
+
+      if (missingConfigs.length > 0) {
+        return res.status(500).json({
+          success: false,
+          error: 'Missing required configuration',
+          details: `Please add these to Replit Secrets: ${missingConfigs.join(', ')}`,
+          hint: 'Get Pipeline ID from: https://app.happypath.marketing/v2/location/7p8fgVVr84S9fxsJqMdA/opportunities/list → Click a stage → Copy Stage ID from URL',
+          missingConfigs
+        });
+      }
+    }
+
     res.status(500).json({
       success: false,
-      error: error.message
+      error: error.message,
+      details: error.response?.data || 'Check server logs for more details'
     });
   }
 });

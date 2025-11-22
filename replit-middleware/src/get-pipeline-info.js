@@ -21,12 +21,14 @@ async function getPipelineInfo() {
   console.log('\n🔍 Fetching Pipeline Information from GHL...\n');
 
   try {
-    // Get all pipelines for this location
-    const response = await client.get('/opportunities/pipelines', {
-      params: { locationId }
-    });
+    // Since we know the pipeline ID, let's fetch it directly
+    // Pipeline ID from the URL you shared: EMd01MWjFA2f1qEuPwWU
+    const pipelineId = 'EMd01MWjFA2f1qEuPwWU';
 
-    const pipelines = response.data.pipelines;
+    const response = await client.get(`/opportunities/pipelines/${pipelineId}`);
+
+    const pipeline = response.data.pipeline;
+    const pipelines = [pipeline]; // Wrap in array for compatibility with existing code
 
     console.log(`✅ Found ${pipelines.length} pipeline(s)\n`);
     console.log('=' .repeat(80));
