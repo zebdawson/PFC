@@ -43,16 +43,18 @@ class GHLClient {
    * Create or update a contact
    */
   async createContact(contactData) {
+    // Define payload outside try block so it's accessible in catch
+    const payload = {
+      locationId: this.locationId,
+      firstName: contactData.firstName,
+      lastName: contactData.lastName || '',
+      email: contactData.email,
+      phone: contactData.phone,
+      companyName: contactData.companyName,
+      tags: contactData.tags || []
+    };
+
     try {
-      const payload = {
-        locationId: this.locationId,
-        firstName: contactData.firstName,
-        lastName: contactData.lastName || '',
-        email: contactData.email,
-        phone: contactData.phone,
-        companyName: contactData.companyName,
-        tags: contactData.tags || []
-      };
 
       // Check if contact exists first (by email or phone)
       let contact;
