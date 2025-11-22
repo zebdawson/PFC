@@ -162,7 +162,6 @@ class GHLClient {
   async createOpportunity(opportunityData) {
     try {
       const payload = {
-        locationId: this.locationId,
         pipelineId: opportunityData.pipelineId || process.env.PFC_PIPELINE_ID,
         pipelineStageId: opportunityData.stageId || process.env.PFC_DEFAULT_STAGE,
         name: opportunityData.name,
