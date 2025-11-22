@@ -87,6 +87,7 @@ class GHLClient {
   async createContact(contactData) {
     // Define payload outside try block so it's accessible in catch
     const payload = {
+      locationId: this.locationId,
       firstName: contactData.firstName,
       lastName: contactData.lastName || '',
       email: contactData.email,
@@ -203,6 +204,7 @@ class GHLClient {
   async createOpportunity(opportunityData) {
     try {
       const payload = {
+        locationId: this.locationId,
         pipelineId: opportunityData.pipelineId || process.env.PFC_PIPELINE_ID,
         pipelineStageId: opportunityData.stageId || process.env.PFC_DEFAULT_STAGE,
         name: opportunityData.name,
@@ -211,6 +213,13 @@ class GHLClient {
         monetaryValue: opportunityData.monetaryValue || 0,
         customFields: opportunityData.customFields || {}
       };
+
+      logger.info('Creating opportunity with payload', {
+        locationId: payload.locationId,
+        pipelineId: payload.pipelineId,
+        pipelineStageId: payload.pipelineStageId,
+        contactId: payload.contactId
+      });
 
       const response = await this.client.post('/opportunities', payload);
       logger.info('Opportunity created', {
