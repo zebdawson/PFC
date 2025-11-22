@@ -54,10 +54,15 @@ class GHLClient {
         tags: contactData.tags || []
       };
 
-      // Check if contact exists first
+      // Check if contact exists first (by email or phone)
       let contact;
       if (contactData.email) {
         contact = await this.findContactByEmail(contactData.email);
+      }
+
+      // Also check by phone if email search didn't find anything
+      if (!contact && contactData.phone) {
+        contact = await this.findContactByPhone(contactData.phone);
       }
 
       if (contact) {
@@ -97,7 +102,29 @@ class GHLClient {
       }
       return null;
     } catch (error) {
-      logger.error('Error finding contact', { error: error.message, email });
+      logger.error('Error finding contact by email', { error: error.message, email });
+      return null;
+    }
+  }
+
+  /**
+   * Find contact by phone
+   */
+  async findContactByPhone(phone) {
+    try {
+      const response = await this.client.get('/contacts/search', {
+        params: {
+          locationId: this.locationId,
+          phone: phone
+        }
+      });
+
+      if (response.data.contacts && response.data.contacts.length > 0) {
+        return response.data.contacts[0];
+      }
+      return null;
+    } catch (error) {
+      logger.error('Error finding contact by phone', { error: error.message, phone });
       return null;
     }
   }
