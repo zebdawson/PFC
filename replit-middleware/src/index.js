@@ -87,6 +87,67 @@ app.get('/test/ghl', async (req, res) => {
   }
 });
 
+// Test creating a minimal opportunity to diagnose 400 errors
+app.get('/test/create-opportunity', async (req, res) => {
+  try {
+    const ghlClient = require('./services/ghlClient');
+
+    // First, create a test contact
+    logger.info('Creating test contact...');
+    const contact = await ghlClient.createContact({
+      firstName: 'Test',
+      lastName: 'Diagnostic',
+      email: 'test-diagnostic@pfc.com',
+      phone: '+15551234567',
+      tags: ['test']
+    });
+
+    logger.info('Test contact created', { contactId: contact.id });
+
+    // Now try to create a minimal opportunity
+    logger.info('Attempting to create opportunity with config:', {
+      pipelineId: process.env.PFC_PIPELINE_ID,
+      stageId: process.env.PFC_DEFAULT_STAGE,
+      contactId: contact.id
+    });
+
+    const opportunity = await ghlClient.createOpportunity({
+      name: 'Test Diagnostic Opportunity',
+      contactId: contact.id,
+      monetaryValue: 0,
+      customFields: {}
+    });
+
+    res.json({
+      success: true,
+      message: 'Opportunity created successfully!',
+      contactId: contact.id,
+      opportunityId: opportunity.id,
+      pipelineId: opportunity.pipelineId,
+      stageId: opportunity.pipelineStageId
+    });
+
+  } catch (error) {
+    logger.error('Diagnostic test failed', {
+      error: error.message,
+      stack: error.stack,
+      response: error.response?.data
+    });
+
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      details: error.response?.data,
+      config: {
+        pipelineId: process.env.PFC_PIPELINE_ID,
+        stageId: process.env.PFC_DEFAULT_STAGE,
+        hasPipelineId: !!process.env.PFC_PIPELINE_ID,
+        hasStageId: !!process.env.PFC_DEFAULT_STAGE
+      }
+    });
+  }
+});
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({
