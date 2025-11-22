@@ -43,7 +43,7 @@ router.get('/auth/ghl', (req, res) => {
  * Step 2: OAuth callback
  * Exchange authorization code for access token
  */
-router.get('/oauth/callback', async (req, res) => {
+router.get('/callback', async (req, res) => {
   const { code } = req.query;
 
   if (!code) {
@@ -174,7 +174,7 @@ async function refreshAccessToken() {
 /**
  * Get current authorization status
  */
-router.get('/oauth/status', (req, res) => {
+router.get('/status', (req, res) => {
   if (!accessTokenStore.accessToken) {
     return res.json({
       authorized: false,
