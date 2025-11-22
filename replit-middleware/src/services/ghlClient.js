@@ -36,7 +36,7 @@ class GHLClient {
       try {
         logger.info('Attempting to get location-specific access token...');
         const response = await this.client.post('/oauth/locationToken', {
-          companyId: this.locationId
+          locationId: this.locationId
         });
 
         this.locationToken = response.data.access_token;
