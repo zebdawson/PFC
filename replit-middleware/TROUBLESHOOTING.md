@@ -147,8 +147,7 @@ http://localhost:3000/oauth/auth/ghl
 
 **New scopes include:**
 - `contacts.readonly` / `contacts.write`
-- `opportunities.readonly` / `opportunities.write`
-- `opportunities/pipelines.readonly` ← New!
+- `opportunities.readonly` / `opportunities.write` (includes pipeline access)
 - `conversations.readonly` / `conversations.write`
 - `locations.readonly` ← New!
 
@@ -289,9 +288,9 @@ node src/get-pipeline-info-oauth.js
 ## The Fixes Applied
 
 ### 1. **Updated OAuth Scopes** (`src/routes/oauth.js`)
-   - Added `opportunities/pipelines.readonly`
    - Added `locations.readonly`
    - Fixed conversation scopes
+   - Note: Pipeline access is included in `opportunities.readonly` scope
 
    **Action Required:** Re-authorize OAuth to apply new scopes
 

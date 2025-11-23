@@ -59,9 +59,8 @@ GHL_REDIRECT_URI=${REDIRECT_URI}
   const scopes = [
     'contacts.readonly',
     'contacts.write',
-    'opportunities.readonly',
+    'opportunities.readonly',  // Includes pipeline access
     'opportunities.write',
-    'opportunities/pipelines.readonly',  // Explicitly request pipeline access
     'conversations.readonly',
     'conversations.write',
     'locations.readonly'  // Add location verification
