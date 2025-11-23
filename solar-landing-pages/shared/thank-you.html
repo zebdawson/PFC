@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Solar Power Florida</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA4_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'YOUR_GA4_ID');
+
+        // Track conversion
+        gtag('event', 'conversion', {
+            'send_to': 'YOUR_GA4_ID',
+            'value': 1.0,
+            'currency': 'USD',
+            'transaction_id': new Date().getTime().toString()
+        });
+    </script>
+
+    <!-- Facebook Pixel -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+        fbq('track', 'Lead');
+    </script>
+
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f0f;
+            animation: confetti 3s ease-out infinite;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Pulsing animation for important elements */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-green-50 to-white">
+
+    <!-- Confetti Effect (optional) -->
+    <div id="confetti-container"></div>
+
+    <div class="min-h-screen py-12 px-4">
+        <div class="max-w-4xl mx-auto">
+
+            <!-- Success Header -->
+            <div class="text-center mb-12 fade-in-up">
+                <!-- Success Icon/Animation -->
+                <div class="inline-block mb-6">
+                    <div class="text-8xl md:text-9xl pulse">🎉</div>
+                </div>
+
+                <h1 class="text-4xl md:text-6xl font-black text-gray-900 mb-4">
+                    Congratulations, <span id="user-name" class="text-green-600">Friend</span>!
+                </h1>
+
+                <p class="text-xl md:text-3xl font-bold text-gray-700 mb-4">
+                    You're About to Save Thousands on Your Electric Bills!
+                </p>
+
+                <p class="text-lg md:text-xl text-gray-600">
+                    Your information has been received and our solar specialist is reviewing it right now.
+                </p>
+            </div>
+
+            <!-- What Happens Next -->
+            <div class="bg-white rounded-lg shadow-xl p-8 md:p-12 mb-8 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-8 text-center">
+                    What Happens Next:
+                </h2>
+
+                <div class="space-y-6">
+                    <!-- Step 1 -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center w-16 h-16 bg-green-500 text-white rounded-full text-2xl font-black">
+                                1
+                            </div>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                                📱 You'll Get a Text Message (Within 2 Minutes)
+                            </h3>
+                            <p class="text-lg text-gray-700">
+                                Our solar specialist Mike will text you to confirm we have your information. Check your phone!
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center w-16 h-16 bg-green-500 text-white rounded-full text-2xl font-black">
+                                2
+                            </div>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                                📞 We'll Call You (Within 5 Minutes)
+                            </h3>
+                            <p class="text-lg text-gray-700">
+                                A quick 5-minute conversation to understand your goals and answer any questions. No pressure, just information.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center w-16 h-16 bg-green-500 text-white rounded-full text-2xl font-black">
+                                3
+                            </div>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                                📊 Custom Savings Proposal (Same Day)
+                            </h3>
+                            <p class="text-lg text-gray-700">
+                                We'll create a detailed proposal showing your exact savings, system design, and available incentives.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center w-16 h-16 bg-green-500 text-white rounded-full text-2xl font-black">
+                                4
+                            </div>
+                        </div>
+                        <div class="ml-6">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                                🏠 Free Site Assessment (This Week)
+                            </h3>
+                            <p class="text-lg text-gray-700">
+                                Quick virtual or in-person assessment to confirm your roof is perfect for solar and finalize your custom design.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendar Booking -->
+            <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-lg shadow-xl p-8 md:p-12 mb-8 text-white text-center fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-black mb-4">
+                    Too Excited to Wait? Book Your Consultation Now!
+                </h2>
+                <p class="text-xl mb-8">
+                    Skip the line and schedule your call at a time that works for you:
+                </p>
+
+                <!-- GoHighLevel Calendar Embed -->
+                <div class="bg-white rounded-lg overflow-hidden">
+                    <iframe
+                        src="https://app.gohighlevel.com/widget/booking/YOUR_CALENDAR_ID"
+                        style="width: 100%; border: none; overflow: hidden; min-height: 800px;"
+                        scrolling="no"
+                        id="ghl-calendar">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Video Testimonial -->
+            <div class="bg-white rounded-lg shadow-xl p-8 md:p-12 mb-8 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4 text-center">
+                    While You Wait: See How John Saved $397/Month
+                </h2>
+                <p class="text-xl text-gray-700 mb-8 text-center">
+                    Watch this 2-minute success story from a Florida homeowner just like you:
+                </p>
+
+                <div class="video-container rounded-lg overflow-hidden shadow-lg">
+                    <iframe
+                        src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+                        title="Customer Success Story"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="mt-8 grid md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-green-50 rounded-lg p-6">
+                        <p class="text-4xl font-black text-green-600 mb-2">$397</p>
+                        <p class="text-lg font-semibold text-gray-700">Monthly Savings</p>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-6">
+                        <p class="text-4xl font-black text-green-600 mb-2">$72,892</p>
+                        <p class="text-lg font-semibold text-gray-700">Total Incentives</p>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-6">
+                        <p class="text-4xl font-black text-green-600 mb-2">$0</p>
+                        <p class="text-lg font-semibold text-gray-700">Down Payment</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Resources -->
+            <div class="bg-white rounded-lg shadow-xl p-8 md:p-12 mb-8 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-8 text-center">
+                    Resources to Get You Started
+                </h2>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Resource 1 -->
+                    <a href="#" class="block bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg p-6 hover:shadow-xl transition-shadow">
+                        <h3 class="text-2xl font-bold mb-2">📱 Download Our Solar Guide</h3>
+                        <p class="mb-4">Complete guide to going solar in Florida (FREE PDF)</p>
+                        <span class="inline-block bg-white text-blue-600 px-4 py-2 rounded font-bold">
+                            Download Now →
+                        </span>
+                    </a>
+
+                    <!-- Resource 2 -->
+                    <a href="#" class="block bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-lg p-6 hover:shadow-xl transition-shadow">
+                        <h3 class="text-2xl font-bold mb-2">🧮 Savings Calculator</h3>
+                        <p class="mb-4">Calculate your exact savings based on your electric bill</p>
+                        <span class="inline-block bg-white text-purple-600 px-4 py-2 rounded font-bold">
+                            Try Calculator →
+                        </span>
+                    </a>
+
+                    <!-- Resource 3 -->
+                    <a href="#" class="block bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-lg p-6 hover:shadow-xl transition-shadow">
+                        <h3 class="text-2xl font-bold mb-2">💰 Incentives Checker</h3>
+                        <p class="mb-4">See all federal and state incentives you qualify for</p>
+                        <span class="inline-block bg-white text-orange-600 px-4 py-2 rounded font-bold">
+                            Check Incentives →
+                        </span>
+                    </a>
+
+                    <!-- Resource 4 -->
+                    <a href="#" class="block bg-gradient-to-br from-green-500 to-green-600 text-white rounded-lg p-6 hover:shadow-xl transition-shadow">
+                        <h3 class="text-2xl font-bold mb-2">⭐ Read Reviews</h3>
+                        <p class="mb-4">See what 537 Florida homeowners are saying</p>
+                        <span class="inline-block bg-white text-green-600 px-4 py-2 rounded font-bold">
+                            Read Reviews →
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Social Proof -->
+            <div class="bg-gray-900 text-white rounded-lg shadow-xl p-8 md:p-12 mb-8 text-center fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-black mb-6">
+                    You're in Good Company
+                </h2>
+                <p class="text-xl mb-8">
+                    Join <span class="text-green-400 font-black">2,847</span> other Florida homeowners who switched to solar this month!
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-6">
+                    <div class="bg-white bg-opacity-10 px-6 py-4 rounded-lg">
+                        <p class="text-3xl font-black">⭐⭐⭐⭐⭐</p>
+                        <p class="text-sm mt-2">4.9/5 Rating</p>
+                    </div>
+                    <div class="bg-white bg-opacity-10 px-6 py-4 rounded-lg">
+                        <p class="text-3xl font-black">537</p>
+                        <p class="text-sm mt-2">Google Reviews</p>
+                    </div>
+                    <div class="bg-white bg-opacity-10 px-6 py-4 rounded-lg">
+                        <p class="text-3xl font-black">BBB A+</p>
+                        <p class="text-sm mt-2">Accredited</p>
+                    </div>
+                    <div class="bg-white bg-opacity-10 px-6 py-4 rounded-lg">
+                        <p class="text-3xl font-black">NABCEP</p>
+                        <p class="text-sm mt-2">Certified</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="bg-white rounded-lg shadow-xl p-8 md:p-12 mb-8 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-8 text-center">
+                    Quick Questions While You Wait
+                </h2>
+
+                <div class="space-y-6">
+                    <div class="border-b border-gray-200 pb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">
+                            What should I prepare for the call?
+                        </h3>
+                        <p class="text-gray-700">
+                            Just have your most recent electric bill handy. That's it! We'll walk you through everything else.
+                        </p>
+                    </div>
+
+                    <div class="border-b border-gray-200 pb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">
+                            Will you do a hard credit check?
+                        </h3>
+                        <p class="text-gray-700">
+                            No! We only do soft credit checks which don't affect your credit score at all.
+                        </p>
+                    </div>
+
+                    <div class="border-b border-gray-200 pb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">
+                            Is there any obligation?
+                        </h3>
+                        <p class="text-gray-700">
+                            Absolutely not. This is a free consultation with no pressure to move forward. We want you to make the best decision for your family.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">
+                            What if I miss your call?
+                        </h3>
+                        <p class="text-gray-700">
+                            No problem! We'll text you and try again. You can also book a specific time using the calendar above.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center fade-in-up">
+                <p class="text-lg text-gray-700 mb-4">
+                    Questions right now? Call or text:
+                </p>
+                <a href="tel:+15551234567" class="inline-block text-3xl md:text-4xl font-black text-green-600 hover:text-green-700 mb-8">
+                    (555) 123-4567
+                </a>
+
+                <p class="text-gray-600">
+                    We're available Monday-Friday 8am-8pm, Saturday 9am-5pm EST
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 mt-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-sm text-gray-400 mb-4">
+                © 2024 Solar Power Florida. All rights reserved. |
+                <a href="#" class="underline hover:text-green-400">Privacy Policy</a> |
+                <a href="#" class="underline hover:text-green-400">Terms of Service</a>
+            </p>
+            <p class="text-xs text-gray-500">
+                Licensed, Bonded, and Insured. FL License #12345
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Get lead info from URL parameters
+        const urlParams = new URLSearchParams(window.location.search)
+        const leadId = urlParams.get('lead')
+        const name = urlParams.get('name')
+
+        // Display personalized name
+        if (name) {
+            document.getElementById('user-name').textContent = name.split(' ')[0]
+        }
+
+        // Optional: Create confetti effect
+        function createConfetti() {
+            const container = document.getElementById('confetti-container')
+            const colors = ['#10B981', '#3B82F6', '#F59E0B', '#EF4444', '#8B5CF6']
+
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div')
+                confetti.className = 'confetti'
+                confetti.style.left = Math.random() * 100 + '%'
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)]
+                confetti.style.animationDelay = Math.random() * 3 + 's'
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's'
+                container.appendChild(confetti)
+            }
+
+            // Remove confetti after 5 seconds
+            setTimeout(() => {
+                container.innerHTML = ''
+            }, 5000)
+        }
+
+        // Trigger confetti on load
+        createConfetti()
+
+        // Track time on page
+        let timeOnPage = 0
+        setInterval(() => {
+            timeOnPage++
+            if (timeOnPage === 30) {
+                // Track 30 seconds engagement
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'engaged_user', {
+                        'time_on_page': 30
+                    })
+                }
+            }
+        }, 1000)
+    </script>
+
+</body>
+</html>

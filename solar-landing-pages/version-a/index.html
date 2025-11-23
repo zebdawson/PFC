@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Florida homeowners are cutting electric bills by 73-91% with solar. $0 down, federal tax credits, and guaranteed savings.">
+    <title>Stop Getting Robbed By Your Power Company | Solar Savings Florida</title>
+
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Google reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA4_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'YOUR_GA4_ID', {
+            'send_page_view': true,
+            'enhanced_measurement': true
+        });
+    </script>
+
+    <!-- Facebook Pixel -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "YOUR_CLARITY_ID");
+    </script>
+
+    <!-- Structured Data for Local SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Solar Power Florida",
+        "image": "https://yoursite.com/logo.jpg",
+        "@id": "",
+        "url": "https://yoursite.com",
+        "telephone": "(555) 123-4567",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Solar St",
+            "addressLocality": "Orlando",
+            "addressRegion": "FL",
+            "postalCode": "32801",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 28.5383,
+            "longitude": -81.3792
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+            ],
+            "opens": "08:00",
+            "closes": "18:00"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "537"
+        }
+    }
+    </script>
+
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Urgency Bar Animation */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .scrolling-text {
+            animation: scroll 20s linear infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Hidden honeypot */
+        .honeypot {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+        }
+
+        /* Custom button styles */
+        .cta-button {
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8555 100%);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+
+        /* Fade in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Video testimonial styles */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Countdown timer */
+        .countdown {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Exit intent popup */
+        .exit-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .exit-popup.active {
+            display: flex;
+        }
+
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .mobile-full {
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- URGENCY BAR -->
+    <div class="bg-red-600 text-white py-3 overflow-hidden relative">
+        <div class="flex whitespace-nowrap scrolling-text">
+            <span class="inline-block px-8 text-sm md:text-base font-bold pulse">
+                ⚡ UTILITY RATES INCREASING 8.2% NEXT MONTH - Lock Your Rate Today ⚡
+            </span>
+            <span class="inline-block px-8 text-sm md:text-base font-bold pulse">
+                ⚡ UTILITY RATES INCREASING 8.2% NEXT MONTH - Lock Your Rate Today ⚡
+            </span>
+            <span class="inline-block px-8 text-sm md:text-base font-bold pulse">
+                ⚡ UTILITY RATES INCREASING 8.2% NEXT MONTH - Lock Your Rate Today ⚡
+            </span>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-12 md:py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+
+                <!-- LEFT COLUMN: Copy -->
+                <div class="fade-in-up">
+                    <!-- Main Headline -->
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-6">
+                        The Power Company Is <span class="text-red-500">Robbing You Blind</span> (And It's Getting Worse)
+                    </h1>
+
+                    <!-- Sub-headline -->
+                    <h2 class="text-xl md:text-2xl font-semibold text-gray-300 mb-8">
+                        Florida Homeowners Are Cutting Their Electric Bills by 73-91% in 90 Days Or Less... Without paying a dime upfront, without dealing with complicated paperwork, and guaranteed to work or we remove it free
+                    </h2>
+
+                    <!-- Value Stack -->
+                    <div class="bg-white text-gray-900 rounded-lg p-6 md:p-8 mb-8 shadow-2xl">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-6 text-center border-b-4 border-orange-500 pb-4">
+                            HERE'S WHAT YOU GET TODAY:
+                        </h3>
+                        <ul class="space-y-4 text-lg md:text-xl">
+                            <li class="flex items-start">
+                                <svg class="w-8 h-8 text-green-500 mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span><strong class="font-black">$47,892</strong> - What you'll save over 25 years <span class="text-green-600 font-bold">(guaranteed in writing)</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-8 h-8 text-green-500 mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span><strong class="font-black">$18,500</strong> - Current federal tax credit <span class="text-red-600 font-bold">(expires soon)</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-8 h-8 text-green-500 mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span><strong class="font-black">$6,500</strong> - Florida solar incentives <span class="text-red-600 font-bold">(limited spots)</span></span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-8 h-8 text-green-500 mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <span><strong class="font-black">$0</strong> - What you pay today</span>
+                            </li>
+                        </ul>
+                        <div class="mt-6 pt-6 border-t-2 border-gray-300 text-center">
+                            <p class="text-2xl md:text-3xl font-black">
+                                Total Value: <span class="line-through text-gray-500">$72,892</span> →
+                                <span class="text-orange-500 text-3xl md:text-4xl">You Pay: $0 Down</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Trust Badges -->
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4 mb-8">
+                        <div class="bg-white px-4 py-2 rounded-lg shadow-md">
+                            <p class="text-sm text-gray-900 font-bold">BBB A+ Rated</p>
+                        </div>
+                        <div class="bg-white px-4 py-2 rounded-lg shadow-md">
+                            <p class="text-sm text-gray-900 font-bold">⭐ 4.9 (537 Reviews)</p>
+                        </div>
+                        <div class="bg-white px-4 py-2 rounded-lg shadow-md">
+                            <p class="text-sm text-gray-900 font-bold">NABCEP Certified</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: Form -->
+                <div class="fade-in-up">
+                    <div class="bg-white rounded-lg shadow-2xl p-6 md:p-8">
+                        <!-- Countdown Timer -->
+                        <div class="bg-red-600 text-white text-center py-4 rounded-lg mb-6">
+                            <p class="text-sm font-semibold mb-2">INCENTIVE EXPIRES IN:</p>
+                            <div id="countdown" class="countdown text-3xl font-black">
+                                <span id="days">00</span>d
+                                <span id="hours">00</span>h
+                                <span id="minutes">00</span>m
+                                <span id="seconds">00</span>s
+                            </div>
+                        </div>
+
+                        <h3 class="text-2xl md:text-3xl font-black text-gray-900 mb-2 text-center">
+                            See How Much YOU Can Save
+                        </h3>
+                        <p class="text-center text-gray-600 mb-6 font-semibold">
+                            Only <span class="text-red-600 font-black" id="spots-left">12</span> Installation Spots Left This Month
+                        </p>
+
+                        <!-- Progress Bar -->
+                        <div class="mb-6">
+                            <div class="bg-gray-200 rounded-full h-2">
+                                <div id="progress-bar" class="progress-bar bg-orange-500 h-2 rounded-full" style="width: 33%"></div>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-2 text-center">
+                                Step <span id="current-step">1</span> of 4
+                            </p>
+                        </div>
+
+                        <form id="lead-form" class="space-y-4">
+                            <!-- Honeypot field -->
+                            <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off">
+
+                            <!-- Step 1: Address -->
+                            <div id="step-1" class="form-step">
+                                <label for="address" class="block text-sm font-bold text-gray-700 mb-2">
+                                    Enter Your Address to Check Availability:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="address"
+                                    name="address"
+                                    required
+                                    class="w-full px-4 py-4 text-lg border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none"
+                                    placeholder="123 Main St, Orlando, FL 32801"
+                                    autocomplete="street-address"
+                                >
+                                <button
+                                    type="button"
+                                    onclick="nextStep(2)"
+                                    class="cta-button w-full mt-4 text-white font-black py-4 md:py-5 px-8 rounded-lg text-lg md:text-xl uppercase tracking-wide"
+                                >
+                                    Check Availability →
+                                </button>
+                            </div>
+
+                            <!-- Step 2: Name and Phone -->
+                            <div id="step-2" class="form-step hidden">
+                                <div class="bg-green-100 border-2 border-green-500 rounded-lg p-4 mb-4">
+                                    <p class="text-green-800 font-bold flex items-center">
+                                        <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Great News! Solar is available in your area!
+                                    </p>
+                                </div>
+
+                                <label for="name" class="block text-sm font-bold text-gray-700 mb-2">
+                                    Your Name:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    required
+                                    class="w-full px-4 py-4 text-lg border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none mb-4"
+                                    placeholder="John Smith"
+                                    autocomplete="name"
+                                >
+
+                                <label for="phone" class="block text-sm font-bold text-gray-700 mb-2">
+                                    Phone Number:
+                                </label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    required
+                                    class="w-full px-4 py-4 text-lg border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none"
+                                    placeholder="(555) 123-4567"
+                                    autocomplete="tel"
+                                >
+
+                                <button
+                                    type="button"
+                                    onclick="nextStep(3)"
+                                    class="cta-button w-full mt-4 text-white font-black py-4 md:py-5 px-8 rounded-lg text-lg md:text-xl uppercase tracking-wide"
+                                >
+                                    Continue →
+                                </button>
+                            </div>
+
+                            <!-- Step 3: Electric Bill -->
+                            <div id="step-3" class="form-step hidden">
+                                <label for="electric-bill" class="block text-sm font-bold text-gray-700 mb-2">
+                                    What's Your Average Monthly Electric Bill?
+                                </label>
+                                <select
+                                    id="electric-bill"
+                                    name="electric_bill"
+                                    required
+                                    class="w-full px-4 py-4 text-lg border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none"
+                                >
+                                    <option value="">Select Range...</option>
+                                    <option value="0-100">$0 - $100</option>
+                                    <option value="100-150">$100 - $150</option>
+                                    <option value="150-200">$150 - $200</option>
+                                    <option value="200-300">$200 - $300</option>
+                                    <option value="300+">$300+</option>
+                                </select>
+
+                                <div id="savings-preview" class="hidden bg-orange-100 border-2 border-orange-500 rounded-lg p-4 mt-4">
+                                    <p class="text-orange-900 font-black text-xl text-center">
+                                        You could save up to <span id="potential-savings">$0</span>/month!
+                                    </p>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    onclick="nextStep(4)"
+                                    class="cta-button w-full mt-4 text-white font-black py-4 md:py-5 px-8 rounded-lg text-lg md:text-xl uppercase tracking-wide"
+                                >
+                                    Show Me My Savings →
+                                </button>
+                            </div>
+
+                            <!-- Step 4: Roof Assessment -->
+                            <div id="step-4" class="form-step hidden">
+                                <label class="block text-sm font-bold text-gray-700 mb-4">
+                                    How much shade does your roof get?
+                                </label>
+
+                                <div class="grid grid-cols-3 gap-3 mb-4">
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="roof_shade" value="full-sun" required class="hidden peer">
+                                        <div class="border-2 border-gray-300 rounded-lg p-3 text-center peer-checked:border-orange-500 peer-checked:bg-orange-50 hover:border-orange-300">
+                                            <div class="text-3xl mb-2">☀️</div>
+                                            <p class="text-xs font-semibold">Full Sun</p>
+                                        </div>
+                                    </label>
+
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="roof_shade" value="partial-shade" required class="hidden peer">
+                                        <div class="border-2 border-gray-300 rounded-lg p-3 text-center peer-checked:border-orange-500 peer-checked:bg-orange-50 hover:border-orange-300">
+                                            <div class="text-3xl mb-2">⛅</div>
+                                            <p class="text-xs font-semibold">Partial Shade</p>
+                                        </div>
+                                    </label>
+
+                                    <label class="cursor-pointer">
+                                        <input type="radio" name="roof_shade" value="mostly-shade" required class="hidden peer">
+                                        <div class="border-2 border-gray-300 rounded-lg p-3 text-center peer-checked:border-orange-500 peer-checked:bg-orange-50 hover:border-orange-300">
+                                            <div class="text-3xl mb-2">☁️</div>
+                                            <p class="text-xs font-semibold">Mostly Shade</p>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <!-- SMS Opt-in -->
+                                <div class="mb-4">
+                                    <label class="flex items-start cursor-pointer">
+                                        <input type="checkbox" name="sms_optin" checked class="mt-1 mr-2">
+                                        <span class="text-xs text-gray-600">
+                                            I consent to receive automated SMS messages about my solar savings. Message frequency varies. Reply STOP to cancel. Message and data rates may apply. By providing your phone number, you agree to our
+                                            <a href="#" class="text-orange-500 underline">Terms</a> and
+                                            <a href="#" class="text-orange-500 underline">Privacy Policy</a>.
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    id="submit-btn"
+                                    class="cta-button w-full text-white font-black py-4 md:py-5 px-8 rounded-lg text-lg md:text-xl uppercase tracking-wide"
+                                >
+                                    YES! LOCK MY RATE BEFORE IT EXPIRES →
+                                </button>
+
+                                <p class="text-xs text-center text-gray-500 mt-4">
+                                    🔒 Your information is 100% secure and will never be shared
+                                </p>
+                            </div>
+
+                            <!-- reCAPTCHA token will be added here -->
+                            <input type="hidden" id="recaptcha-token" name="recaptcha_token">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF - Live Feed -->
+    <section class="bg-gray-100 py-4 border-y-2 border-gray-300">
+        <div class="max-w-7xl mx-auto px-4">
+            <div id="live-feed" class="text-center text-gray-800 font-semibold">
+                <span class="inline-flex items-center">
+                    <span class="w-3 h-3 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                    <span id="feed-message">John from Orlando just locked in his rate 3 minutes ago</span>
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF - Stats -->
+    <section class="bg-white py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">
+                <span class="text-orange-500">2,847</span> Florida Homeowners Have Already Switched This Month
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-700 font-semibold mb-12">
+                Join them before rates go up again...
+            </p>
+
+            <!-- Stats Grid -->
+            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="bg-gradient-to-br from-orange-500 to-red-500 text-white rounded-lg p-8 shadow-xl">
+                    <p class="text-5xl font-black mb-2">73-91%</p>
+                    <p class="text-lg font-semibold">Average Savings</p>
+                </div>
+                <div class="bg-gradient-to-br from-orange-500 to-red-500 text-white rounded-lg p-8 shadow-xl">
+                    <p class="text-5xl font-black mb-2">$0</p>
+                    <p class="text-lg font-semibold">Down Payment</p>
+                </div>
+                <div class="bg-gradient-to-br from-orange-500 to-red-500 text-white rounded-lg p-8 shadow-xl">
+                    <p class="text-5xl font-black mb-2">25 Years</p>
+                    <p class="text-lg font-semibold">Warranty</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO TESTIMONIALS -->
+    <section class="bg-gray-900 py-12 md:py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-black text-white mb-12 text-center">
+                Don't Take Our Word For It... Hear From Real Florida Homeowners
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-xl">
+                    <div class="video-container">
+                        <iframe
+                            src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1"
+                            title="Customer Testimonial 1"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy"
+                        ></iframe>
+                    </div>
+                    <div class="p-4">
+                        <p class="font-bold text-gray-900">Sarah M. - Tampa</p>
+                        <p class="text-sm text-gray-600">"Saving $287/month!"</p>
+                        <div class="flex text-yellow-400 mt-2">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-xl">
+                    <div class="video-container">
+                        <iframe
+                            src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2"
+                            title="Customer Testimonial 2"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy"
+                        ></iframe>
+                    </div>
+                    <div class="p-4">
+                        <p class="font-bold text-gray-900">Mike R. - Jacksonville</p>
+                        <p class="text-sm text-gray-600">"Paid off in 7 years"</p>
+                        <div class="flex text-yellow-400 mt-2">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-xl">
+                    <div class="video-container">
+                        <iframe
+                            src="https://www.youtube.com/embed/YOUR_VIDEO_ID_3"
+                            title="Customer Testimonial 3"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            loading="lazy"
+                        ></iframe>
+                    </div>
+                    <div class="p-4">
+                        <p class="font-bold text-gray-900">Jennifer L. - Orlando</p>
+                        <p class="text-sm text-gray-600">"House value up $45K!"</p>
+                        <div class="flex text-yellow-400 mt-2">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BEFORE/AFTER BILLS -->
+    <section class="bg-white py-12 md:py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-12 text-center">
+                Real Bills, Real Savings
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Before -->
+                <div class="bg-red-100 border-4 border-red-500 rounded-lg p-8 relative">
+                    <div class="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full font-black text-sm">
+                        BEFORE
+                    </div>
+                    <div class="mt-8">
+                        <p class="text-sm text-gray-600 mb-2">Duke Energy - August 2024</p>
+                        <p class="text-6xl font-black text-red-600 mb-4">$342</p>
+                        <p class="text-gray-700 font-semibold">Monthly Electric Bill</p>
+                    </div>
+                </div>
+
+                <!-- After -->
+                <div class="bg-green-100 border-4 border-green-500 rounded-lg p-8 relative">
+                    <div class="absolute top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-full font-black text-sm">
+                        AFTER
+                    </div>
+                    <div class="mt-8">
+                        <p class="text-sm text-gray-600 mb-2">Duke Energy - August 2024</p>
+                        <p class="text-6xl font-black text-green-600 mb-4">$31</p>
+                        <p class="text-gray-700 font-semibold">Monthly Electric Bill</p>
+                        <p class="text-2xl font-black text-green-700 mt-4">
+                            💰 Saving $311/month!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ / OBJECTION HANDLING -->
+    <section class="bg-gray-100 py-12 md:py-20">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-12 text-center">
+                Your Questions, Answered
+            </h2>
+
+            <div class="space-y-6">
+                <!-- FAQ 1 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-xl md:text-2xl font-black text-gray-900 mb-3">
+                        "But I don't own my roof / I have an HOA"
+                    </h3>
+                    <p class="text-gray-700 text-lg">
+                        We work with HOAs every single day and have solutions for every situation. In Florida, there's actually a <strong>Solar Rights Act</strong> that protects your right to install solar. We handle all the HOA paperwork for you - it's literally our job.
+                    </p>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-xl md:text-2xl font-black text-gray-900 mb-3">
+                        "What if I move before it's paid off?"
+                    </h3>
+                    <p class="text-gray-700 text-lg">
+                        Solar systems add an average of <strong>$40,000+ to your home's value</strong> (according to Zillow). Plus, buyers LOVE solar homes because they know their electric bills will be low. You can also transfer the payments to the new owner or pay it off with the home sale proceeds.
+                    </p>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-xl md:text-2xl font-black text-gray-900 mb-3">
+                        "What about hurricanes, hail, and Florida weather?"
+                    </h3>
+                    <p class="text-gray-700 text-lg">
+                        Our panels are engineered to withstand <strong>Category 5 hurricane winds</strong> and hail up to 1 inch. They're actually MORE durable than your roof shingles. Plus, you get a <strong>25-year all-weather guarantee</strong>. If anything happens, we fix or replace it at no cost to you.
+                    </p>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-xl md:text-2xl font-black text-gray-900 mb-3">
+                        "Is this a scam? It sounds too good to be true..."
+                    </h3>
+                    <p class="text-gray-700 text-lg">
+                        Fair question. We're <strong>licensed, bonded, and insured</strong> with an A+ BBB rating. We have over <strong>500 video reviews</strong> from real Florida homeowners you can watch right now. The reason we can offer $0 down is because of federal and state incentives - the government is literally paying us to help you switch to solar. We're just passing those savings to you.
+                    </p>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-xl md:text-2xl font-black text-gray-900 mb-3">
+                        "Why should I act now? Can't I just do this later?"
+                    </h3>
+                    <p class="text-gray-700 text-lg">
+                        Three reasons: <strong>1)</strong> The 30% federal tax credit is dropping to 26% soon, <strong>2)</strong> Florida incentives have limited funding and spots fill up fast, and <strong>3)</strong> Utility rates just got approved for another 8.2% increase next month. Every month you wait costs you hundreds of dollars you'll never get back.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="bg-gradient-to-br from-orange-500 to-red-600 py-12 md:py-20">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-6xl font-black text-white mb-6">
+                Stop Throwing Money Away Every Single Month
+            </h2>
+            <p class="text-xl md:text-2xl text-white mb-8 font-semibold">
+                Your power company is counting on you doing nothing. Prove them wrong.
+            </p>
+
+            <a href="#lead-form" class="inline-block bg-white text-orange-600 font-black py-5 px-12 rounded-lg text-xl md:text-2xl uppercase tracking-wide shadow-2xl hover:scale-105 transition-transform">
+                Lock My Rate Now →
+            </a>
+
+            <p class="text-white mt-6 text-lg">
+                ⚡ Only <span class="font-black text-2xl" id="spots-left-footer">12</span> spots left this month
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm text-gray-400 mb-4">
+                © 2024 Solar Power Florida. All rights reserved. |
+                <a href="#" class="underline hover:text-orange-500">Privacy Policy</a> |
+                <a href="#" class="underline hover:text-orange-500">Terms of Service</a>
+            </p>
+            <p class="text-xs text-gray-500">
+                Licensed, Bonded, and Insured. FL License #12345
+            </p>
+        </div>
+    </footer>
+
+    <!-- EXIT INTENT POPUP -->
+    <div id="exit-popup" class="exit-popup">
+        <div class="bg-white rounded-lg p-8 md:p-12 max-w-2xl mx-4 relative">
+            <button onclick="closeExitPopup()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-900 text-3xl font-bold">
+                ×
+            </button>
+
+            <h3 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">
+                WAIT! Don't Miss This...
+            </h3>
+            <p class="text-xl md:text-2xl text-red-600 font-bold mb-6">
+                Your Neighbor Just Saved $397/Month
+            </p>
+            <p class="text-lg text-gray-700 mb-8">
+                They locked in their rate before the increase. Will you?
+            </p>
+
+            <button onclick="closeExitPopup(); document.getElementById('address').focus();" class="cta-button w-full text-white font-black py-5 px-8 rounded-lg text-xl uppercase tracking-wide">
+                YES! SHOW ME MY SAVINGS →
+            </button>
+        </div>
+    </div>
+
+    <!-- GDPR/CCPA Compliance Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 shadow-lg z-50 hidden">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-sm">
+                We use cookies to improve your experience and analyze our traffic. By continuing, you consent to our use of cookies.
+            </p>
+            <div class="flex gap-4">
+                <button onclick="acceptCookies()" class="bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded font-bold text-sm">
+                    Accept
+                </button>
+                <button onclick="declineCookies()" class="bg-gray-700 hover:bg-gray-600 px-6 py-2 rounded font-bold text-sm">
+                    Decline
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main JavaScript -->
+    <script src="../shared/js/main.js"></script>
+
+</body>
+</html>
