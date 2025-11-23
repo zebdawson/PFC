@@ -229,6 +229,31 @@ class GHLClient {
 
       return response.data.opportunity;
     } catch (error) {
+      // Enhanced error handling for common issues
+      if (error.response?.status === 403) {
+        const errorMessage = error.response?.data?.message || error.message;
+
+        if (errorMessage.includes('does not have access to this location')) {
+          logger.error('Location/Pipeline mismatch detected', {
+            error: errorMessage,
+            currentLocationId: this.locationId,
+            attemptedPipelineId: payload.pipelineId,
+            hint: 'The pipeline ID may belong to a different location than the one authorized via OAuth'
+          });
+
+          const enhancedError = new Error(
+            `OAuth Location Mismatch: The pipeline ID "${payload.pipelineId}" does not belong to location "${this.locationId}". ` +
+            `Please verify that PFC_PIPELINE_ID matches a pipeline in your authorized GHL location. ` +
+            `Run the diagnostic script to see available pipelines: node src/get-pipeline-info-oauth.js`
+          );
+          enhancedError.originalError = error;
+          enhancedError.statusCode = 403;
+          enhancedError.locationId = this.locationId;
+          enhancedError.pipelineId = payload.pipelineId;
+          throw enhancedError;
+        }
+      }
+
       logger.error('Error creating opportunity', {
         error: error.message,
         response: error.response?.data

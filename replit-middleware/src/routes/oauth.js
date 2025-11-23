@@ -61,8 +61,10 @@ GHL_REDIRECT_URI=${REDIRECT_URI}
     'contacts.write',
     'opportunities.readonly',
     'opportunities.write',
-    'conversations/reports.readonly',
-    'conversations/livechat.write'
+    'opportunities/pipelines.readonly',  // Explicitly request pipeline access
+    'conversations.readonly',
+    'conversations.write',
+    'locations.readonly'  // Add location verification
   ].join(' ');
 
   const authUrl = `https://marketplace.gohighlevel.com/oauth/chooselocation?` +
